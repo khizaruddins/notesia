@@ -1,0 +1,13 @@
+mat-toolbar {
+  background: linear-gradient(to right, #f2994a, #f2c94c);
+  box-shadow: 0px 0px 0.5px #ccc;
+}
+.navigation {
+  list-style-type: none;
+  li {
+    display: inline-block;
+    &.nav-right {
+      float: right;
+    }
+  }
+}
