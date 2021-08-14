@@ -1,0 +1,23 @@
+<button
+  mat-button
+  *ngIf="!stroked"
+  [class]="buttonClass"
+  [disabled]="isDisabled"
+>
+  <ng-container *ngTemplateOutlet="btnContent"></ng-container>
+</button>
+
+<button
+  mat-stroked-button
+  *ngIf="stroked"
+  [class]="buttonClass"
+  [disabled]="isDisabled"
+>
+  <ng-container *ngTemplateOutlet="btnContent"></ng-container>
+</button>
+
+<ng-template #btnContent>
+  <span>
+    {{ label }}
+  </span>
+</ng-template>

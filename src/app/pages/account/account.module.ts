@@ -2,7 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './components/login/login.component';
 import { AccountRoutingModule } from './account-routing.module';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InputModule } from 'src/app/common/input/input.module';
+import { ButtonModule } from 'src/app/common/button/button.module';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 
@@ -13,7 +19,14 @@ import {MatTabsModule} from '@angular/material/tabs';
   imports: [
     CommonModule,
     AccountRoutingModule,
-    MatTabsModule
+    MatTabsModule,
+    MatIconModule,
+    MatButtonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    InputModule,
+    ButtonModule,
+    MatFormFieldModule
   ],
   exports: [
     LoginComponent

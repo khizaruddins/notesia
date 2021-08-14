@@ -4,9 +4,28 @@
       <li class="brand c-p" routerLink="/">
         <span>Notesia</span>
       </li>
-      <li class="nav-right c-p" routerLink="login">
-        <span>Login</span>
+      <li class="nav-right c-p" routerLink="accounts" *ngIf="!loggedIn">
+        <span>Login / Register</span>
       </li>
+      <li class="nav-right c-p" *ngIf="loggedIn" [matMenuTriggerFor]="menu">
+        <mat-icon>
+          account_circle
+        </mat-icon>
+      </li>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>account_circle</mat-icon>
+          <span>My Account</span>
+        </button>
+        <!-- <button mat-menu-item>
+          <mat-icon>voicemail</mat-icon>
+          <span></span>
+        </button> -->
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <span>Logout</span>
+        </button>
+      </mat-menu>
     </ul>
   </div>
 </mat-toolbar>

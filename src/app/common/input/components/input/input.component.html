@@ -1,0 +1,42 @@
+<div class="input-wrapper" [class]="classes.inputWrapperClass">
+  <mat-form-field [appearance]="appearance" [class]="classes.formFieldClass">
+    <mat-label *ngIf="label">
+      {{ label }}
+    </mat-label>
+    <input
+      [type]="type"
+      [placeholder]="placeholder"
+      [formControl]="control"
+      (input)="emitEvents($event, 'input')"
+      (blur)="emitEvents($event, 'blur')"
+      [class]="classes.inputClass"
+      matInput
+    />
+    <mat-hint *ngIf="hint && control.untouched">{{ hint }}</mat-hint>
+    <span *ngIf="prefixContent">{{ prefixContent }}</span>
+    <span *ngIf="suffixContent">{{ suffixContent }}</span>
+    <mat-icon *ngIf="matPrefixIcon" matPrefix>{{ matPrefixIcon }}</mat-icon>
+    <mat-icon
+      *ngIf="matSuffixIcon"
+      matSuffix
+      [class]="classes.matSuffixIconClass"
+      (click)="emitEvents($event, 'suffixIconClick')"
+      >{{ matSuffixIcon }}</mat-icon
+    >
+    <mat-error
+      *ngIf="control.invalid && control.touched && control.errors?.required"
+    >
+      {{ errors.required }}
+    </mat-error>
+    <mat-error
+      *ngIf="control.invalid && control.touched && control.errors?.pattern"
+    >
+      {{ errors.pattern }}
+    </mat-error>
+    <mat-error
+      *ngIf="control.invalid && control.touched && control.errors?.minLength"
+    >
+      {{ errors.minLength }}
+    </mat-error>
+  </mat-form-field>
+</div>
