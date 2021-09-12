@@ -73,7 +73,8 @@
         (ngSubmit)="submitForm('signup')"
         *ngIf="isLoginOrSignup === 'signup'"
       >
-        <div class="title">Please enter your credentials to signup</div>
+      <div class="title">Please enter your credentials to signup</div>
+      <ng-container *ngIf="step===1">
         <app-input
           [label]="formInfo.signupForm.fname.label"
           [placeholder]="formInfo.signupForm.fname.placeholder"
@@ -95,16 +96,6 @@
           [classes]="formInfo.signupForm.lname.classes"
         ></app-input>
         <app-input
-          [label]="formInfo.signupForm.email.label"
-          [placeholder]="formInfo.signupForm.email.placeholder"
-          [appearance]="formInfo.signupForm.email.appearance"
-          [control]="signupForm.get('email')"
-          [type]="formInfo.signupForm.email.type"
-          [errors]="formInfo.signupForm.email.errors"
-          [hint]="formInfo.signupForm.email.hint"
-          [classes]="formInfo.signupForm.email.classes"
-        ></app-input>
-        <app-input
           [label]="formInfo.signupForm.mobileNumber.label"
           [placeholder]="formInfo.signupForm.mobileNumber.placeholder"
           [appearance]="formInfo.signupForm.mobileNumber.appearance"
@@ -114,44 +105,66 @@
           [hint]="formInfo.signupForm.mobileNumber.hint"
           [classes]="formInfo.signupForm.mobileNumber.classes"
         ></app-input>
-        <app-input
-          [label]="formInfo.signupForm.password.label"
-          [placeholder]="formInfo.signupForm.password.placeholder"
-          [appearance]="formInfo.signupForm.password.appearance"
-          [control]="signupForm.get('password')"
-          [type]="formInfo.signupForm.password.type"
-          [errors]="formInfo.signupForm.password.errors"
-          [hint]="formInfo.signupForm.password.hint"
-          [classes]="formInfo.signupForm.password.classes"
-          (onSuffixIconClick)="onSuffixIconClick($event, 'signupForm', 'pass')"
-          [matSuffixIcon]="formInfo.signupForm.password.matSuffixIcon"
-        ></app-input>
-        <app-input
-          [label]="formInfo.signupForm.repassword.label"
-          [placeholder]="formInfo.signupForm.repassword.placeholder"
-          [appearance]="formInfo.signupForm.repassword.appearance"
-          [control]="signupForm.get('repassword')"
-          [type]="formInfo.signupForm.repassword.type"
-          [errors]="formInfo.signupForm.repassword.errors"
-          [hint]="formInfo.signupForm.repassword.hint"
-          (onSuffixIconClick)="
-            onSuffixIconClick($event, 'signupForm', 'repass')
-          "
-          [classes]="formInfo.signupForm.repassword.classes"
-          [matSuffixIcon]="formInfo.signupForm.repassword.matSuffixIcon"
-        ></app-input>
-        <mat-error *ngIf="signupForm.errors?.noMatch">
-          <div class="no-match-error">
-            Password and Retype password is not same
-          </div>
-        </mat-error>
         <app-button
+          label="Next"
+          [stroked]="true"
+          buttonClass="theme-inverse-btn"
+          type="button"
+          (onClick)="toggleSignupForm()"
+        >
+        </app-button>
+      </ng-container>
+      <ng-container *ngIf="step===2">
+        <app-input
+        [label]="formInfo.signupForm.email.label"
+        [placeholder]="formInfo.signupForm.email.placeholder"
+        [appearance]="formInfo.signupForm.email.appearance"
+        [control]="signupForm.get('email')"
+        [type]="formInfo.signupForm.email.type"
+        [errors]="formInfo.signupForm.email.errors"
+        [hint]="formInfo.signupForm.email.hint"
+        [classes]="formInfo.signupForm.email.classes"
+      ></app-input>
+      
+      <app-input
+        [label]="formInfo.signupForm.password.label"
+        [placeholder]="formInfo.signupForm.password.placeholder"
+        [appearance]="formInfo.signupForm.password.appearance"
+        [control]="signupForm.get('password')"
+        [type]="formInfo.signupForm.password.type"
+        [errors]="formInfo.signupForm.password.errors"
+        [hint]="formInfo.signupForm.password.hint"
+        [classes]="formInfo.signupForm.password.classes"
+        (onSuffixIconClick)="onSuffixIconClick($event, 'signupForm', 'pass')"
+        [matSuffixIcon]="formInfo.signupForm.password.matSuffixIcon"
+      ></app-input>
+      <app-input
+        [label]="formInfo.signupForm.repassword.label"
+        [placeholder]="formInfo.signupForm.repassword.placeholder"
+        [appearance]="formInfo.signupForm.repassword.appearance"
+        [control]="signupForm.get('repassword')"
+        [type]="formInfo.signupForm.repassword.type"
+        [errors]="formInfo.signupForm.repassword.errors"
+        [hint]="formInfo.signupForm.repassword.hint"
+        (onSuffixIconClick)="
+          onSuffixIconClick($event, 'signupForm', 'repass')
+        "
+        [classes]="formInfo.signupForm.repassword.classes"
+        [matSuffixIcon]="formInfo.signupForm.repassword.matSuffixIcon"
+      ></app-input>
+      <mat-error *ngIf="signupForm.errors?.noMatch">
+        <div class="no-match-error">
+          Password and Retype password is not same
+        </div>
+      </mat-error>
+      <app-button
           label="Signup"
           [stroked]="true"
           buttonClass="theme-inverse-btn"
           type="submit"
         >
         </app-button>
+      </ng-container>
       </form>
     </div>
   </div>

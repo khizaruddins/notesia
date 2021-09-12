@@ -1,0 +1,16 @@
+<div class="wrapper">
+  <app-header></app-header>
+  <ng-container *ngIf="isHome">
+    <app-button label="Open Dialog" (onClick)="openDialog($event)"></app-button>
+  </ng-container>
+  <ng-container *ngIf="!isHome">
+    <router-outlet></router-outlet>
+  </ng-container>
+</div>
+
+
+<ng-template #dialogRef>
+  <div class="dialog-container">
+    <app-editable></app-editable>
+  </div>
+</ng-template>

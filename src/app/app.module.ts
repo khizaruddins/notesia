@@ -4,18 +4,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { EditableComponent } from './common/editable/components/editable/editable.component';
 import { HomeModule } from './pages/home/home.module';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { EditableDirective } from './common/directives/editable.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EditableComponent
+    EditableDirective,
   ],
   imports: [
     BrowserModule,

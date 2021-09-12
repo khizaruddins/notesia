@@ -34,3 +34,10 @@ body {
   width: 80%;
   margin: 0 auto;
 }
+
+.bg-white {
+    .mat-dialog-container {
+      background: #fff !important;
+      color: #000 !important; 
+    }
+}

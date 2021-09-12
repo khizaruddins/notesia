@@ -3,6 +3,7 @@
   *ngIf="!stroked"
   [class]="buttonClass"
   [disabled]="isDisabled"
+  (click)="emitEvents($event,'click')"
 >
   <ng-container *ngTemplateOutlet="btnContent"></ng-container>
 </button>
@@ -12,6 +13,7 @@
   *ngIf="stroked"
   [class]="buttonClass"
   [disabled]="isDisabled"
+  (click)="emitEvents($event,'click')"
 >
   <ng-container *ngTemplateOutlet="btnContent"></ng-container>
 </button>

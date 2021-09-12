@@ -7,8 +7,6 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { StorageService } from 'src/app/common/services/storage.service';
 import { UtilService } from 'src/app/common/services/util.service';
-import { catchError } from 'rxjs/operators';
-
 
 @Component({
   selector: 'app-login',
@@ -19,7 +17,6 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private loginService: LoginService,
     private cv: CustomValidators,
     private db: AngularFirestore,
     private storageService: StorageService,
@@ -42,6 +39,7 @@ export class LoginComponent implements OnInit {
   }, {
     validator: this.cv.matchPassword('password', 'repassword')
   });
+  step = 1;
 
   ngOnInit(): void {
     this.isLoggedIn();
@@ -51,6 +49,10 @@ export class LoginComponent implements OnInit {
     if (this.storageService.getLocalStorageItem('user')) {
       this.router.navigate(['/']);
     }
+  }
+
+  toggleSignupForm(): void {
+    this.step = this.step == 1 ? 2 : 1;
   }
 
   onSuffixIconClick(event: any, choice: string, passRepass?: string): void {
@@ -89,7 +91,7 @@ export class LoginComponent implements OnInit {
         break;
       case 'signup':
         if (this.signupForm.valid) {
-          this.signupFlow();
+          this.checkRegisteredUser();
         } else {
           this.signupForm.markAllAsTouched();
         }
@@ -117,6 +119,20 @@ export class LoginComponent implements OnInit {
     }, error => {
       console.error(error.message);
       this.utilService.openSnackbarDuration('Something went wrong', 'DISMISS', 3000);
+    });
+  }
+
+  checkRegisteredUser() {
+    let email = this.signupForm.get('email')?.value;
+    const dbEmail = this.db.collection('users', ref => ref.where('email', '==', email));
+    dbEmail.valueChanges({ idField: 'userId' }).subscribe((dbValue: any) => {
+      if (dbValue.length > 0) {
+        this.utilService.openSnackbarDuration('Already registered Please Login', 'DISMISS', 3000);
+        this.isLoginOrSignup = 'login';
+        this.step = 1;
+      } else {
+        this.signupFlow();
+      }
     });
   }
 

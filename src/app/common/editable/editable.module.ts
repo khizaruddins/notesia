@@ -6,10 +6,13 @@ import { EditableComponent } from './components/editable/editable.component';
 
 @NgModule({
   declarations: [
-    EditableComponent
+    EditableComponent,
   ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    EditableComponent
   ]
 })
 export class EditableModule { }
