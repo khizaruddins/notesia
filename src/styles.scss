@@ -3,6 +3,11 @@
 *,
 *::before,
 *::after {
+  margin: 0;
+  padding: 0;
+}
+
+.f-work-sans {
   font-family: "Work sans", sans-serif;
 }
 
@@ -12,6 +17,19 @@ body {
 }
 body {
   margin: 0;
+  font-family: "Work sans", sans-serif;
+}
+
+.f-adamina {
+  font-family: "Adamina", serif !important;
+}
+
+.fw-bold {
+  font-weight: 700;
+}
+
+.f-times {
+  font-family: "Times New Roman", Times, serif !important;
 }
 
 .fc-white {
@@ -33,11 +51,14 @@ body {
 .container {
   width: 80%;
   margin: 0 auto;
+  @media (max-width: 768px) {
+    width: 90%;
+  }
 }
 
 .bg-white {
-    .mat-dialog-container {
-      background: #fff !important;
-      color: #000 !important; 
-    }
+  .mat-dialog-container {
+    background: #fff !important;
+    color: #000 !important;
+  }
 }

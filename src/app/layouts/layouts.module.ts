@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+
 import { LayoutsComponent } from './components/layouts/layouts.component';
-import { HomeModule } from '../pages/home/home.module';
+import { HeaderModule } from '../core/header/header.module';
 
 
 
@@ -11,7 +13,11 @@ import { HomeModule } from '../pages/home/home.module';
   ],
   imports: [
     CommonModule,
-    HomeModule
+    RouterModule,
+    HeaderModule
+  ],
+  exports: [
+    LayoutsComponent
   ]
 })
 export class LayoutsModule { }

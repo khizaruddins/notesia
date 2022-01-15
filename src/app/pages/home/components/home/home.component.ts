@@ -1,7 +1,7 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { DialogService } from 'src/app/common/dialog/service/dialog.service';
-import { StorageService } from 'src/app/common/services/storage.service';
+import { DialogService } from 'src/app/core/dialog/service/dialog.service';
+import { StorageService } from 'src/app/shared/services/storage.service';
 
 @Component({
   selector: 'app-home',

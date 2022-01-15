@@ -6,8 +6,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { InputModule } from 'src/app/common/input/input.module';
-import { ButtonModule } from 'src/app/common/button/button.module';
+import { InputModule } from 'src/app/core/input/input.module';
+import { ButtonModule } from 'src/app/core/button/button.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
 

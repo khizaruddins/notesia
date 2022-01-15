@@ -10,7 +10,9 @@ import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { EditableDirective } from './common/directives/editable.directive';
+import { EditableDirective } from './core/directives/editable.directive';
+import { RouterModule } from '@angular/router';
+import { LayoutsModule } from './layouts/layouts.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { EditableDirective } from './common/directives/editable.directive';
     HomeModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    LayoutsModule
   ],
   providers: [
 

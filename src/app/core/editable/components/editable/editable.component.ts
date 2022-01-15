@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-editable',
@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditableComponent implements OnInit {
 
+  @ViewChild('editable') editable: ElementRef | undefined;
   constructor() { }
 
   ngOnInit(): void {
+    this.editable?.nativeElement.focus();
   }
 
 }

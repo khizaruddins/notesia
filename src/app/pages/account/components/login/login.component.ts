@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CustomValidators } from 'src/app/common/services/custom-validators.service';
+import { CustomValidators } from 'src/app/shared/services/custom-validators.service';
 import { FORM_INFO } from './form-info';
 import { LoginService } from './login.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-import { StorageService } from 'src/app/common/services/storage.service';
-import { UtilService } from 'src/app/common/services/util.service';
+import { StorageService } from 'src/app/shared/services/storage.service';
+import { UtilService } from 'src/app/shared/services/util.service';
 
 @Component({
   selector: 'app-login',

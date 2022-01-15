@@ -1,16 +1,14 @@
 <mat-toolbar>
   <div class="container">
     <ul class="navigation">
-      <li class="brand c-p" routerLink="/">
-        <span>Notesia</span>
+      <li class="brand c-p f-adamina" routerLink="/">
+        <span>!YourCode</span>
       </li>
       <li class="nav-right c-p" routerLink="accounts" *ngIf="!loggedIn">
         <span>Login / Register</span>
       </li>
       <li class="nav-right c-p" *ngIf="loggedIn" [matMenuTriggerFor]="menu">
-        <mat-icon>
-          account_circle
-        </mat-icon>
+        <mat-icon> account_circle </mat-icon>
       </li>
       <mat-menu #menu="matMenu">
         <button mat-menu-item>

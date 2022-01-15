@@ -90,12 +90,15 @@
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: 1fr 1fr;
+
     .logos {
       grid-gap: 10%;
     }
     .welcome-screen {
       background: transparent;
       text-align: center;
+      width: 90%;
+      margin: 0 auto;
       .sub-title {
         width: 80%;
         margin: 30px auto;
