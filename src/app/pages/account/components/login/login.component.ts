@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CustomValidators } from 'src/app/shared/services/custom-validators.service';
+import { FormValidators } from 'src/app/shared/services/form-validators.service';
 import { FORM_INFO } from './form-info';
-import { LoginService } from './login.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { StorageService } from 'src/app/shared/services/storage.service';
 import { UtilService } from 'src/app/shared/services/util.service';
+import { CookieService } from 'src/app/shared/services/cookie.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -17,11 +18,12 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private cv: CustomValidators,
+    private fv: FormValidators,
     private db: AngularFirestore,
     private storageService: StorageService,
     private router: Router,
-    private utilService: UtilService
+    private utilService: UtilService,
+    private cookieService: CookieService
   ) { }
   formInfo = FORM_INFO;
   isLoginOrSignup = 'login';
@@ -37,9 +39,11 @@ export class LoginComponent implements OnInit {
     password: ['', [Validators.required, Validators.pattern(this.formInfo.loginForm.password.pattern)]],
     repassword: ['', [Validators.required, Validators.pattern(this.formInfo.loginForm.password.pattern)]]
   }, {
-    validator: this.cv.matchPassword('password', 'repassword')
+    validator: this.fv.matchPassword('password', 'repassword')
   });
   step = 1;
+
+  private DOMAIN_URL = environment.APP.DOMAIN_URL;
 
   ngOnInit(): void {
     this.isLoggedIn();
@@ -70,6 +74,7 @@ export class LoginComponent implements OnInit {
           this.formInfo.signupForm.repassword.matSuffixIcon = event.target.textContent === 'visibility' ? 'visibility_off' : 'visibility';
         }
         break;
+      default:
     }
   }
 
@@ -96,6 +101,7 @@ export class LoginComponent implements OnInit {
           this.signupForm.markAllAsTouched();
         }
         break;
+      default:
     }
   }
 
@@ -109,6 +115,8 @@ export class LoginComponent implements OnInit {
           delete dbValue[0].password;
           const data = JSON.stringify(dbValue[0]);
           this.storageService.setLocalStorageItem('user', data);
+          const domain = this.DOMAIN_URL === 'http://localhost:4200' ? 'localhost': 'notasia';
+          this.cookieService.setCookie('uid', dbValue[0].userId, 3);
           this.router.navigate(['/']);
         } else {
           this.utilService.openSnackbarDuration('Your password is incorrect', 'DISMISS', 3000);
@@ -157,7 +165,7 @@ export class LoginComponent implements OnInit {
         this.utilService.openSnackbar("Something went wrong", "DISMISS");
       });
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   }
 

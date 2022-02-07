@@ -9,7 +9,8 @@ export class UtilService {
     constructor(
         private _snackBar: MatSnackBar
     ) { }
-
+    
+    //  snackbar functions
     openSnackbarNoDuration(title: string, action: string): void {
         this._snackBar.open(title, action);
     }

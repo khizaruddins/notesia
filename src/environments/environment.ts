@@ -1,9 +1,16 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
+import {API_URLS} from './api-urls';
 
 export const environment = {
   production: false,
+  APP: {
+    // api backend base url
+    BASE_URL: '',
+    DOMAIN_URL: 'http://localhost:4200',
+    API_URLS
+  },
   firebase:  {
     apiKey: "AIzaSyBux3M2Nwp92A6L0wiu4DLk0Hbp5C_1HGc",
     authDomain: "firestore-d1845.firebaseapp.com",

@@ -3,7 +3,7 @@ import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
 @Injectable({
   providedIn: 'root'
 })
- export class CustomValidators {
+ export class FormValidators {
   //  keep creating functions and use them
   matchPassword(firstControl: any, secondControl: any): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
