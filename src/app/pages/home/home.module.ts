@@ -7,7 +7,6 @@ import { HeaderModule } from 'src/app/core/header/header.module';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ButtonModule } from 'src/app/core/button/button.module';
 import { DialogModule } from 'src/app/core/dialog/dialog.module';
-import { EditableModule } from 'src/app/core/editable/editable.module';
 
 
 @NgModule({
@@ -21,7 +20,6 @@ import { EditableModule } from 'src/app/core/editable/editable.module';
     MatToolbarModule,
     ButtonModule,
     DialogModule,
-    EditableModule
   ],
   exports: [
     HomeComponent

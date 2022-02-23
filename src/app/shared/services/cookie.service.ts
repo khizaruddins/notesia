@@ -36,20 +36,22 @@ export class CookieService {
             d.setTime(d.getTime() + (exdays*24*60*60*1000));
             const expires = 'expires=' + d.toUTCString();
             if ( domain ) {
-                const cookie = `${cookieName}=${cookieValue};path=/${expires};domain=${domain}`;
-                console.log(cookie);
+                const cookie = `${cookieName}=${cookieValue}; expires=${expires}; domain=${domain}; path=/`;
                 document.cookie = cookie;
             } else {
-                document.cookie = `${cookieName}=${cookieValue};path=/${expires}`
+                document.cookie = `${cookieName}=${cookieValue}; expires=${expires}; path=/`;
             }
-            console.log('cookie created');
         }
     }
 
 
     deleteCookie(name: string, domain?: string): void{
         if (typeof document !== 'undefined') {
-            document.cookie = name + '=; Expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/; domain=' + domain;
+            if (domain) {
+                document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/; domain=' + domain;
+            } else {
+                document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/';
+            }
         }
     }
 }

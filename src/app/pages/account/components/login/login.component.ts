@@ -50,7 +50,8 @@ export class LoginComponent implements OnInit {
   }
 
   isLoggedIn() {
-    if (this.storageService.getLocalStorageItem('user')) {
+    if (this.cookieService.getCookie('uid')) {
+      this.utilService.openSnackbarDuration('Already Logged in', 'DISMISS', 3000);
       this.router.navigate(['/']);
     }
   }

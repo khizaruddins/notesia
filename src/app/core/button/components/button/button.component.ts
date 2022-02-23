@@ -17,7 +17,12 @@ export class ButtonComponent implements OnInit {
   @Input() isLoading = false;
   @Input() route: any;
   @Input() isDisabled = false; 
-  
+  @Input() iconClass= "";
+  @Input() icon = ''; // b for bootstrap icons or m for mat icons
+  @Input() iconPlacement = ''; // before or after content
+  @Input() bootstrapIconClass = ''; // excluding bi get from this link https://icons.getbootstrap.com/icons/123/
+  @Input() matIcon=''; // material icon name get from this link https://fonts.google.com/icons?selected=Material+Icons
+  @Input() iconWrapperClass = '';
   @Output() onClick = new EventEmitter();
 
   ngOnInit(): void {

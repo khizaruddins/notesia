@@ -19,7 +19,22 @@
 </button>
 
 <ng-template #btnContent>
+  <span *ngIf="iconPlacement === 'before'" [class]="iconWrapperClass">
+    <ng-container *ngTemplateOutlet="iconContent"></ng-container>
+  </span>
   <span>
     {{ label }}
   </span>
+  <span *ngIf="iconPlacement === 'after'" [class]="iconWrapperClass">
+    <ng-container *ngTemplateOutlet="iconContent"></ng-container>
+  </span>
+</ng-template>
+
+<ng-template #iconContent>
+  <i [class]="icon === 'm'? 'material-icons ' + iconClass :'bi '+ bootstrapIconClass +' ' + iconClass">{{icon === 'm' ? matIcon: ''}}</i>
+  <!-- <i *ngIf="icon === 'b'" [class]="'bi '+ bootstrapIconClass + ' ' + iconClass"></i>
+
+  <i [class]="'material-icons '+ iconClass"  *ngIf="icon === 'm'">
+    {{matIcon}}
+  </i> -->
 </ng-template>
