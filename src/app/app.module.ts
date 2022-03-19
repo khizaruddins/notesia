@@ -13,6 +13,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { EditableDirective } from './core/directives/editable.directive';
 import { RouterModule } from '@angular/router';
 import { LayoutsModule } from './layouts/layouts.module';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { LayoutsModule } from './layouts/layouts.module';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     MatSnackBarModule,
+    MatProgressSpinnerModule,
     LayoutsModule
   ],
   providers: [

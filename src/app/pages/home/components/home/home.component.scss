@@ -5,6 +5,9 @@
             object-fit: cover;
             width: 100%;
             filter: brightness(0.6);
+            @media (max-width: 768px) {
+                height: 100vh;
+            }
         }
         .overlay-section {
             position: absolute;
@@ -69,13 +72,16 @@
         }
         .circular-oval-btn-wrapper {
             position: absolute;
-            bottom: 8%;
+            bottom: 12%;
             left: 48.7%;
             transform: translateX(-50%);
             color: #fff;
             animation: bounce 2s;
             animation-direction: alternate;
             animation-iteration-count: infinite;
+            @media (max-width: 768px) {
+                left: 45%;
+            }
             .oval-button {
                 width: 45px;
                 height: 4rem;
