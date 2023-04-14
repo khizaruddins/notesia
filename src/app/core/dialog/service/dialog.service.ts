@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { DialogComponent } from "../components/dialog/dialog.component";
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 
 @Injectable({
     providedIn: 'root'
@@ -10,8 +10,10 @@ export class DialogService {
         private dialog: MatDialog,
     ) { }
 
+    dialogRef?: MatDialogRef<any>;
+
     openDialog(templateRef: any, config?: MatDialogConfig, dialogData?: any): void {
-        this.dialog.open(DialogComponent, {
+        this.dialogRef = this.dialog.open(DialogComponent, {
             width: config?.width ? config.width : '80%',
             maxHeight: '100vh',
             maxWidth: '100vw',
