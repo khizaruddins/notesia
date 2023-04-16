@@ -10,20 +10,19 @@ import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
-  declarations: [
-    DialogComponent
-  ],
-  providers: [DialogService],
-  imports: [
-    CommonModule,
-    MatDialogModule,
-    ButtonModule,
-    MatButtonModule,
-    MatIconModule
-  ],
-  exports: [
-    DialogComponent
-  ],
-  entryComponents: [DialogComponent]
+    declarations: [
+        DialogComponent
+    ],
+    providers: [DialogService],
+    imports: [
+        CommonModule,
+        MatDialogModule,
+        ButtonModule,
+        MatButtonModule,
+        MatIconModule
+    ],
+    exports: [
+        DialogComponent
+    ]
 })
 export class DialogModule { }

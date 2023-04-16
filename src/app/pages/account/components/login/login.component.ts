@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormValidators } from 'src/app/shared/services/form-validators.service';
 import { FORM_INFO } from './form-info';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { StorageService } from 'src/app/shared/services/storage.service';
 import { UtilService } from 'src/app/shared/services/util.service';
@@ -19,7 +18,6 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private fv: FormValidators,
-    private db: AngularFirestore,
     private storageService: StorageService,
     private router: Router,
     private utilService: UtilService,
@@ -109,40 +107,40 @@ export class LoginComponent implements OnInit {
   loginFlow() {
     let email = this.loginForm.get('email')?.value;
     let password = btoa(this.loginForm.get('password')?.value);
-    const dbEmail = this.db.collection('users', ref => ref.where('email', '==', email));
-    dbEmail.valueChanges({ idField: 'userId' }).subscribe((dbValue: any) => {
-      if (dbValue.length > 0) {
-        if (dbValue[0].password === password) {
-          delete dbValue[0].password;
-          const data = JSON.stringify(dbValue[0]);
-          this.storageService.setLocalStorageItem('user', data);
-          const domain = this.DOMAIN_URL === 'http://localhost:4200' ? 'localhost': 'notasia';
-          this.cookieService.setCookie('uid', dbValue[0].userId, 3);
-          this.router.navigate(['/']);
-        } else {
-          this.utilService.openSnackbarDuration('Your password is incorrect', 'DISMISS', 3000);
-        }
-      } else {
-        this.utilService.openSnackbarDuration('Your email is incorrect or you are not registered', 'DISMISS', 3000);
-      }
-    }, error => {
-      console.error(error.message);
-      this.utilService.openSnackbarDuration('Something went wrong', 'DISMISS', 3000);
-    });
+    // const dbEmail = collection(this.firestore, 'users', (ref: any) => ref.where('email', '==', email));
+    // dbEmail.valueChanges({ idField: 'userId' }).subscribe((dbValue: any) => {
+    //   if (dbValue.length > 0) {
+    //     if (dbValue[0].password === password) {
+    //       delete dbValue[0].password;
+    //       const data = JSON.stringify(dbValue[0]);
+    //       this.storageService.setLocalStorageItem('user', data);
+    //       const domain = this.DOMAIN_URL === 'http://localhost:4200' ? 'localhost': 'notasia';
+    //       this.cookieService.setCookie('uid', dbValue[0].userId, 3);
+    //       this.router.navigate(['/']);
+    //     } else {
+    //       this.utilService.openSnackbarDuration('Your password is incorrect', 'DISMISS', 3000);
+    //     }
+    //   } else {
+    //     this.utilService.openSnackbarDuration('Your email is incorrect or you are not registered', 'DISMISS', 3000);
+    //   }
+    // }, (error: any) => {
+    //   console.error(error.message);
+    //   this.utilService.openSnackbarDuration('Something went wrong', 'DISMISS', 3000);
+    // });
   }
 
   checkRegisteredUser() {
     let email = this.signupForm.get('email')?.value;
-    const dbEmail = this.db.collection('users', ref => ref.where('email', '==', email));
-    dbEmail.valueChanges({ idField: 'userId' }).subscribe((dbValue: any) => {
-      if (dbValue.length > 0) {
-        this.utilService.openSnackbarDuration('Already registered Please Login', 'DISMISS', 3000);
-        this.isLoginOrSignup = 'login';
-        this.step = 1;
-      } else {
-        this.signupFlow();
-      }
-    });
+    // const dbEmail = this.db.collection('users', (ref: any) => ref.where('email', '==', email));
+    // dbEmail.valueChanges({ idField: 'userId' }).subscribe((dbValue: any) => {
+    //   if (dbValue.length > 0) {
+    //     this.utilService.openSnackbarDuration('Already registered Please Login', 'DISMISS', 3000);
+    //     this.isLoginOrSignup = 'login';
+    //     this.step = 1;
+    //   } else {
+    //     this.signupFlow();
+    //   }
+    // });
   }
 
   signupFlow() {
@@ -152,19 +150,19 @@ export class LoginComponent implements OnInit {
     delete data.repassword;
     data.isAdmin = false;
     try {
-      this.db.collection('users').add(data).then(dataValue => {
-        userId = dataValue.id;
-        data.userId = userId;
+      // this.db.collection('users').add(data).then((dataValue: any) => {
+      //   userId = dataValue.id;
+      //   data.userId = userId;
 
-        delete data.password;
-        value = JSON.stringify(data);
+      //   delete data.password;
+      //   value = JSON.stringify(data);
 
-        this.signupForm.reset();
-        this.storageService.setLocalStorageItem('user', value);
-        this.router.navigate(['/']);
-      }, error => {
-        this.utilService.openSnackbar("Something went wrong", "DISMISS");
-      });
+      //   this.signupForm.reset();
+      //   this.storageService.setLocalStorageItem('user', value);
+      //   this.router.navigate(['/']);
+      // }, (error: any) => {
+      //   this.utilService.openSnackbar("Something went wrong", "DISMISS");
+      // });
     } catch (e) {
       console.error(e);
     }
