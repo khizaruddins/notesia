@@ -27,21 +27,21 @@ export class UtilService {
     initTextAnimation(typedTextRef: any, cursorRef: any): void {
         if (this.textArray.length) {
           setTimeout( () => {
-          this.type(typedTextRef, cursorRef);
+            this.type(typedTextRef, cursorRef);
           }, this.newTextDelay + 250);
         }
       }
     
       type(typedTextRef: any, cursorRef: any): void {
         if (this.charIndex < this.textArray[this.textArrayIndex].length) {
-          if(!cursorRef.nativeElement.classList.contains("typing")) cursorRef.nativeElement.classList.add("typing");
+          if (!cursorRef.nativeElement.classList.contains("typing")) cursorRef.nativeElement.classList.add("typing");
+          
           typedTextRef.nativeElement.textContent += this.textArray[this.textArrayIndex].charAt(this.charIndex);
           this.charIndex++;
           setTimeout( () => {
             this.type(typedTextRef, cursorRef);
           }, this.typingDelay); 
-        } 
-        else {
+        } else {
           cursorRef.nativeElement.classList.remove("typing");
           setTimeout(() => {
             this.erase(typedTextRef, cursorRef);
@@ -51,14 +51,14 @@ export class UtilService {
     
       erase(typedTextRef: any, cursorRef: any): void {
         if (this.charIndex > 0) {
-          if(!cursorRef.nativeElement.classList.contains("typing")) cursorRef.nativeElement.classList.add("typing");
+          if (!cursorRef.nativeElement.classList.contains("typing")) cursorRef.nativeElement.classList.add("typing");
+          
           typedTextRef.nativeElement.textContent = this.textArray[this.textArrayIndex].substring(0, this.charIndex-1);
           this.charIndex--;
           setTimeout(() => {
             this.erase(typedTextRef, cursorRef);
           },this.erasingDelay)
-        } 
-        else {
+        } else {
           cursorRef.nativeElement.classList.remove("typing");
           this.textArrayIndex++;
           if (this.textArrayIndex>=this.textArray.length) this.textArrayIndex=0;
