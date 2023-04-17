@@ -58,7 +58,7 @@
                             background-color: #ccc;
                             margin-left: 0.1rem;
                             width: 3px;
-                            animation: blink 1s infinite;
+                            animation: host-home_blink 1s infinite;
                             &.typing {
                                 animation: none;
                             }
@@ -76,7 +76,7 @@
             left: 48.7%;
             transform: translateX(-50%);
             color: #fff;
-            animation: bounce 2s;
+            animation: host-home_bounce 2s;
             animation-direction: alternate;
             animation-iteration-count: infinite;
             @media (max-width: 768px) {
@@ -121,12 +121,12 @@
     }
 }
 
-@keyframes bounce {
+@keyframes host-home_bounce {
     from { transform: translate3d(0, 0, 0);}
     to { transform: translate3d(0, 60px, 0);}
 }
 
-@keyframes blink {
+@keyframes host-home_blink {
     0%  { background-color: #ccc; }
     49% { background-color: #ccc; }
     50% { background-color: transparent; }

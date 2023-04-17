@@ -3,7 +3,7 @@ export const FORM_INFO = {
         email: {
             label: 'Email',
             placeholder: 'Email Id',
-            appearance: 'standard' as const,
+            appearance: 'outline' as const,
             type: 'email',
             hint: 'Eg: someone@gmail.com',
             pattern: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
@@ -22,7 +22,7 @@ export const FORM_INFO = {
         password: {
             label: 'Password',
             placeholder: 'Password',
-            appearance: 'standard' as const,
+            appearance: 'outline' as const,
             pattern: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,
             type: 'password',
             matSuffixIcon: 'visibility_off',
@@ -43,7 +43,7 @@ export const FORM_INFO = {
         fname: {
             label: 'First name',
             placeholder: 'First Name',
-            appearance: 'standard' as const,
+            appearance: 'outline' as const,
             type: 'text',
             pattern: '',
             hint: 'Eg: Musk',
@@ -61,7 +61,7 @@ export const FORM_INFO = {
         lname: {
             label: 'Last name',
             placeholder: 'Last Name',
-            appearance: 'standard' as const,
+            appearance: 'outline' as const,
             type: 'text',
             pattern: '',
             hint: 'Eg: Elon',
@@ -79,7 +79,7 @@ export const FORM_INFO = {
         email: {
             label: 'Email',
             placeholder: 'Email Id',
-            appearance: 'standard' as const,
+            appearance: 'outline' as const,
             type: 'email',
             pattern: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
             hint: 'Eg: someone@gmail.com',
@@ -97,7 +97,7 @@ export const FORM_INFO = {
         mobileNumber: {
             label: 'Mobile number',
             placeholder: '+91 1234567890',
-            appearance: 'standard' as const,
+            appearance: 'outline' as const,
             type: 'number',
             pattern: '',
             hint: '',
@@ -115,7 +115,7 @@ export const FORM_INFO = {
         password: {
             label: 'Password',
             placeholder: 'Password',
-            appearance: 'standard' as const,
+            appearance: 'outline' as const,
             pattern: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,
             type: 'password',
             matSuffixIcon: 'visibility_off',
@@ -134,7 +134,7 @@ export const FORM_INFO = {
         repassword: {
             label: 'Password',
             placeholder: 'Password',
-            appearance: 'standard' as const,
+            appearance: 'outline' as const,
             pattern: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,
             type: 'password',
             matSuffixIcon: 'visibility_off',
