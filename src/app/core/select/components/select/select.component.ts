@@ -16,7 +16,7 @@ export class SelectComponent implements OnInit {
   @Input() options = [];
   @Input() appearance = 'legacy';
   @Input() label = '';
-  @Input() formControl = new FormControl('');
+  @Input() formControl = new FormControl<string | null>('');
   @Input() hint = '';
   @Input() error = '';
 
