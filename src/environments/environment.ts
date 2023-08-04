@@ -11,15 +11,15 @@ export const environment = {
     DOMAIN_URL: 'http://localhost:4200',
     API_URLS
   },
-  // firebase:  {
-  //   apiKey: "AIzaSyBux3M2Nwp92A6L0wiu4DLk0Hbp5C_1HGc",
-  //   authDomain: "firestore-d1845.firebaseapp.com",
-  //   databaseURL: "https://firestore-d1845-default-rtdb.firebaseio.com",
-  //   projectId: "firestore-d1845",
-  //   storageBucket: "firestore-d1845.appspot.com",
-  //   messagingSenderId: "914829067670",
-  //   appId: "1:914829067670:web:ca76c1b66609d0021a09b7"
-  // }
+  firebase:  {
+    apiKey: "AIzaSyBux3M2Nwp92A6L0wiu4DLk0Hbp5C_1HGc",
+    authDomain: "firestore-d1845.firebaseapp.com",
+    databaseURL: "https://firestore-d1845-default-rtdb.firebaseio.com",
+    projectId: "firestore-d1845",
+    storageBucket: "firestore-d1845.appspot.com",
+    messagingSenderId: "914829067670",
+    appId: "1:914829067670:web:ca76c1b66609d0021a09b7"
+  }
 };
 
 /*

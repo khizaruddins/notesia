@@ -1,0 +1,16 @@
+/* Target the autofill background color for the input fields */
+input:-webkit-autofill {
+    /* Set the background color to transparent */
+    -webkit-box-shadow: 0 0 0 1000px #000 inset;
+    /* Optionally, you can set the text color to match your dark blue background */
+    color: #FFF; /* Replace #FFF with the appropriate text color for your design */
+  }
+  
+  /* Additional styling for your input tags */
+  input {
+    /* Set the background color to dark blue */
+    background-color: #000;
+    /* Set the text color to white */
+    color: #FFF;
+    /* Add other styles as needed */
+  }

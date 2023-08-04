@@ -5,13 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeModule } from './pages/home/home.module';
-import { environment } from 'src/environments/environment';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { EditableDirective } from './core/directives/editable.directive';
 import { RouterModule } from '@angular/router';
 import { LayoutsModule } from './layouts/layouts.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { HttpInterceptorService } from './shared/services/http-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,11 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     LayoutsModule
   ],
   providers: [
-
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorService,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
