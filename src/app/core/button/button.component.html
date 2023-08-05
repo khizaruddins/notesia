@@ -1,0 +1,35 @@
+<button
+  mat-button
+  *ngIf="!stroked"
+  [class]="buttonClass"
+  [disabled]="isDisabled"
+  (click)="emitEvents($event,'click')"
+>
+  <ng-container *ngTemplateOutlet="btnContent"></ng-container>
+</button>
+
+<button
+  mat-stroked-button
+  *ngIf="stroked"
+  [class]="buttonClass"
+  [disabled]="isDisabled"
+  (click)="emitEvents($event,'click')"
+>
+  <ng-container *ngTemplateOutlet="btnContent"></ng-container>
+</button>
+
+<ng-template #btnContent>
+  <span *ngIf="iconPlacement === 'before'" [class]="iconWrapperClass">
+    <ng-container *ngTemplateOutlet="iconContent"></ng-container>
+  </span>
+  <span>
+    {{ label }}
+  </span>
+  <span *ngIf="iconPlacement === 'after'" [class]="iconWrapperClass">
+    <ng-container *ngTemplateOutlet="iconContent"></ng-container>
+  </span>
+</ng-template>
+
+<ng-template #iconContent>
+  <i [class]="icon === 'm'? 'material-icons ' + iconClass :'bi '+ bootstrapIconClass +' ' + iconClass">{{icon === 'm' ? matIcon: ''}}</i>
+</ng-template>

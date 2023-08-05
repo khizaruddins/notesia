@@ -4,19 +4,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HomeModule } from './pages/home/home.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { EditableDirective } from './core/directives/editable.directive';
 import { RouterModule } from '@angular/router';
-import { LayoutsModule } from './layouts/layouts.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { HttpInterceptorService } from './shared/services/http-interceptor.service';
+import { HttpInterceptorService } from './shared/interceptors/http-interceptor.service';
+import { environment } from 'src/environments/environment';
+import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EditableDirective,
   ],
   imports: [
     BrowserModule,
@@ -24,10 +24,11 @@ import { HttpInterceptorService } from './shared/services/http-interceptor.servi
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HomeModule,
+    HomeComponent,
     MatSnackBarModule,
     MatProgressSpinnerModule,
-    LayoutsModule
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore()),
   ],
   providers: [
     {
