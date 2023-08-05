@@ -15,6 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { InputComponent } from 'src/app/core/input/input.component';
 import { ButtonComponent } from 'src/app/core/button/button.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { IButtonConfig } from 'src/app/shared/interfaces/button.interface';
 
 
 @Component({
@@ -66,10 +67,36 @@ export class LoginComponent implements OnInit {
   step = 1;
 
   private DOMAIN_URL = environment.APP.DOMAIN_URL;
+  loginBtnConfig: IButtonConfig = {};
+  nextBtnConfig: IButtonConfig = {};
+  signupBtnConfig: IButtonConfig = {};
+
 
   ngOnInit(): void {
     this.isLoggedIn();
+    this.initializeConfigs();
     this.initializeFirebase();
+  }
+
+  initializeConfigs() {
+    this.loginBtnConfig = {
+      label: 'Login',
+      stroked: true,
+      buttonClass: 'theme-inverse-btn',
+      type: 'submit'
+    }
+    this.nextBtnConfig = {
+      label: 'Next',
+      stroked: true,
+      buttonClass: 'theme-inverse-btn',
+      type: 'button'
+    }
+    this.signupBtnConfig = {
+      label: 'Signup',
+      stroked: true,
+      buttonClass: 'theme-inverse-btn',
+      type: 'submit'
+    }
   }
 
   initializeFirebase() {

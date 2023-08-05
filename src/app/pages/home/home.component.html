@@ -30,14 +30,7 @@
                 </a>
             </div>
             <div class="resume-download">
-                <app-button 
-                    label="Download CV"
-                    icon="b" 
-                    iconClass="pe-1" 
-                    iconPlacement="before" 
-                    buttonClass="" 
-                    bootstrapIconClass="bi-file-earmark-pdf" 
-                    [stroked]="true" ></app-button>
+                <app-button [config]="downloadCvBtnConfig"></app-button>
             </div>
         </div>
         <div class="circular-oval-btn-wrapper">

@@ -61,10 +61,7 @@
           [matSuffixIcon]="formInfo.loginForm.password.matSuffixIcon"
         ></app-input>
         <app-button
-          label="Login"
-          [stroked]="true"
-          buttonClass="theme-inverse-btn"
-          type="submit"
+          [config]="loginBtnConfig"
         >
         </app-button>
       </form>
@@ -106,10 +103,7 @@
           [classes]="formInfo.signupForm.mobileNumber.classes"
         ></app-input>
         <app-button
-          label="Next"
-          [stroked]="true"
-          buttonClass="theme-inverse-btn"
-          type="button"
+          [config]="nextBtnConfig"
           (onClick)="toggleSignupForm()"
         >
         </app-button>
@@ -158,10 +152,7 @@
         </div>
       </mat-error>
       <app-button
-          label="Signup"
-          [stroked]="true"
-          buttonClass="theme-inverse-btn"
-          type="submit"
+          [config]="signupBtnConfig"
         >
         </app-button>
       </ng-container>

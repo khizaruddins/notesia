@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { IButtonConfig } from '../../shared/interfaces/button.interface';
 
 @Component({
   selector: 'app-button',
@@ -17,19 +18,21 @@ export class ButtonComponent implements OnInit {
 
   constructor() { }
 
-  @Input() buttonClass: any;
-  @Input() type = 'button';
-  @Input() stroked = false;
-  @Input() label: any;
-  @Input() isLoading = false;
-  @Input() route: any;
-  @Input() isDisabled = false; 
-  @Input() iconClass= "";
-  @Input() icon = ''; // b for bootstrap icons or m for mat icons
-  @Input() iconPlacement = ''; // before or after content
-  @Input() bootstrapIconClass = ''; // excluding bi get from this link https://icons.getbootstrap.com/icons/123/
-  @Input() matIcon=''; // material icon name get from this link https://fonts.google.com/icons?selected=Material+Icons
-  @Input() iconWrapperClass = '';
+  @Input() config: IButtonConfig = {
+    buttonClass: '',
+    type: 'button',
+    stroked: false,
+    label: 'Button',
+    isLoading : false,
+    route: '',
+    isDisabled: false, 
+    iconClass: '',
+    icon: '', 
+    iconPlacement: '', 
+    bootstrapIconClass: '', 
+    matIcon:'', 
+    iconWrapperClass: '',
+  }
   @Output() onClick = new EventEmitter();
 
   ngOnInit(): void {

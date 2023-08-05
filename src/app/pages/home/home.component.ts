@@ -6,6 +6,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { ButtonComponent } from 'src/app/core/button/button.component';
 import { DialogComponent } from 'src/app/core/dialog/dialog.component';
 import { HeaderComponent } from 'src/app/core/header/header.component';
+import { IButtonConfig } from 'src/app/shared/interfaces/button.interface';
 import { StorageService } from 'src/app/shared/services/storage.service';
 import { UtilService } from 'src/app/shared/utils/util.service';
 
@@ -37,6 +38,8 @@ export class HomeComponent implements OnInit {
     });
    }
 
+  downloadCvBtnConfig: IButtonConfig = {};
+
   @ViewChild('typedTextRef', { static: true }) typedTextRef: ElementRef<HTMLElement> = {} as ElementRef;
   @ViewChild('cursorRef', { static: true }) cursorRef: ElementRef<HTMLElement> = {} as ElementRef;
 
@@ -45,6 +48,19 @@ export class HomeComponent implements OnInit {
   userDetails: any;
   
   ngOnInit(): void {
+    this.initConfigs();
+  }
+
+  initConfigs() {
+    this.downloadCvBtnConfig = {
+      label: 'Download CV',
+      icon: 'b',
+      iconClass: 'pe-1', 
+      iconPlacement: 'before', 
+      buttonClass: '',
+      bootstrapIconClass: 'bi-file-earmark-pdf', 
+      stroked: true 
+    }
   }
   
   ngAfterViewInit(): void {

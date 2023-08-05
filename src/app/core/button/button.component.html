@@ -1,8 +1,8 @@
 <button
   mat-button
-  *ngIf="!stroked"
-  [class]="buttonClass"
-  [disabled]="isDisabled"
+  *ngIf="!config.stroked"
+  [class]="config.buttonClass"
+  [disabled]="config.isDisabled"
   (click)="emitEvents($event,'click')"
 >
   <ng-container *ngTemplateOutlet="btnContent"></ng-container>
@@ -10,26 +10,26 @@
 
 <button
   mat-stroked-button
-  *ngIf="stroked"
-  [class]="buttonClass"
-  [disabled]="isDisabled"
+  *ngIf="config.stroked"
+  [class]="config.buttonClass"
+  [disabled]="config.isDisabled"
   (click)="emitEvents($event,'click')"
 >
   <ng-container *ngTemplateOutlet="btnContent"></ng-container>
 </button>
 
 <ng-template #btnContent>
-  <span *ngIf="iconPlacement === 'before'" [class]="iconWrapperClass">
+  <span *ngIf="config.iconPlacement === 'before'" [class]="config.iconWrapperClass">
     <ng-container *ngTemplateOutlet="iconContent"></ng-container>
   </span>
   <span>
-    {{ label }}
+    {{ config.label }}
   </span>
-  <span *ngIf="iconPlacement === 'after'" [class]="iconWrapperClass">
+  <span *ngIf="config.iconPlacement === 'after'" [class]="config.iconWrapperClass">
     <ng-container *ngTemplateOutlet="iconContent"></ng-container>
   </span>
 </ng-template>
 
 <ng-template #iconContent>
-  <i [class]="icon === 'm'? 'material-icons ' + iconClass :'bi '+ bootstrapIconClass +' ' + iconClass">{{icon === 'm' ? matIcon: ''}}</i>
+  <i [class]="config.icon === 'm'? 'material-icons ' + config.iconClass :'bi '+ config.bootstrapIconClass +' ' + config.iconClass">{{config.icon === 'm' ? config.matIcon: ''}}</i>
 </ng-template>
