@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LayoutsComponent } from './layouts/components/layouts/layouts.component';
+import { LayoutsComponent } from './layouts/layouts.component';
 
 const routes: Routes = [
   {
@@ -9,21 +9,21 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule)
+        loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent)
       },
       {
         path: 'blogs',
-        loadChildren: () => import('./pages/blog/blog.module').then(m => m.BlogModule)
+        loadComponent: () => import('./pages/blog-list/blog-list.component').then(m => m.BlogListComponent)
       },
       {
         path: 'users',
-        loadChildren: () => import('./pages/users/users.module').then(m => m.UsersModule),
+        loadComponent: () => import('./pages/user-list/user-list.component').then(m => m.UserListComponent),
       }
     ]
   },
   {
     path: 'accounts',
-    loadChildren: () => import('./pages/account/account.module').then(m => m.AccountModule)
+    loadComponent: () => import('./pages/account/login.component').then(m => m.LoginComponent)
   },
 ];
 
