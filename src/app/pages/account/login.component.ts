@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { FormValidators } from 'src/app/shared/utils/form-validators.service';
 import { FORM_INFO } from '../../shared/constants/form-info';
 import { Router } from '@angular/router';
-import { StorageService } from 'src/app/shared/services/storage.service';
 import { UtilService } from 'src/app/shared/utils/util.service';
 import { CookieService } from 'src/app/shared/services/cookie.service';
 import { environment } from 'src/environments/environment';
@@ -16,6 +15,7 @@ import { InputComponent } from 'src/app/core/input/input.component';
 import { ButtonComponent } from 'src/app/core/button/button.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { IButtonConfig } from 'src/app/shared/interfaces/button.interface';
+import { IInputConfig } from 'src/app/shared/interfaces/input.interface';
 
 
 @Component({
@@ -40,7 +40,6 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private fv: FormValidators,
-    private storageService: StorageService,
     private router: Router,
     private utilService: UtilService,
     private cookieService: CookieService
@@ -61,24 +60,116 @@ export class LoginComponent implements OnInit {
     mob: ['', [Validators.required, Validators.pattern(/[\d]{10}$/)]],
     password: ['', [Validators.required, Validators.pattern(this.formInfo.loginForm.password.pattern)]],
     repassword: ['', [Validators.required, Validators.pattern(this.formInfo.loginForm.password.pattern)]]
-  }, {
-    validator: this.fv.matchPassword('password', 'repassword')
-  });
+  }, { validator: this.fv.matchPassword('password', 'repassword') });
   step = 1;
 
-  private DOMAIN_URL = environment.APP.DOMAIN_URL;
+  // private DOMAIN_URL = environment.APP.DOMAIN_URL;
   loginBtnConfig: IButtonConfig = {};
   nextBtnConfig: IButtonConfig = {};
   signupBtnConfig: IButtonConfig = {};
 
+  emailInputConfig: IInputConfig = {} as IInputConfig;
+  passwordInputConfig: IInputConfig = {} as IInputConfig;
+  fNameInputConfig: IInputConfig = {} as IInputConfig;
+  lNameInputConfig: IInputConfig = {} as IInputConfig;
+  mobInputConfig: IInputConfig = {} as IInputConfig;
+  emailSignupInputConfig: IInputConfig = {} as IInputConfig;
+  passwordSignupInputConfig: IInputConfig = {} as IInputConfig;
+  rePasswordInputConfig: IInputConfig = {} as IInputConfig;
+
 
   ngOnInit(): void {
     this.isLoggedIn();
-    this.initializeConfigs();
+    this.initBtnConfigs();
+    this.initInputConfigs();
     this.initializeFirebase();
   }
 
-  initializeConfigs() {
+  initInputConfigs() {
+    this.emailInputConfig = {
+      label: this.formInfo.loginForm.email.label,
+      placeholder: this.formInfo.loginForm.email.placeholder,
+      appearance: this.formInfo.loginForm.email.appearance,
+      type: this.formInfo.loginForm.email.type,
+      errors: this.formInfo.loginForm.email.errors,
+      hint: this.formInfo.loginForm.email.hint,
+      classes: this.formInfo.loginForm.email.classes,
+    }
+
+    this.passwordInputConfig = {
+      label: this.formInfo.loginForm.password.label,
+      placeholder: this.formInfo.loginForm.password.placeholder,
+      appearance: this.formInfo.loginForm.password.appearance,
+      type: this.formInfo.loginForm.password.type,
+      errors: this.formInfo.loginForm.password.errors,
+      hint: this.formInfo.loginForm.password.hint,
+      classes: this.formInfo.loginForm.password.classes,
+      matSuffixIcon: this.formInfo.loginForm.password.matSuffixIcon,
+    }
+
+    this.fNameInputConfig = {
+      label: this.formInfo.signupForm.fname.label,
+      placeholder: this.formInfo.signupForm.fname.placeholder,
+      appearance: this.formInfo.signupForm.fname.appearance,
+      type: this.formInfo.signupForm.fname.type,
+      errors: this.formInfo.signupForm.fname.errors,
+      hint: this.formInfo.signupForm.fname.hint,
+      classes: this.formInfo.signupForm.fname.classes,
+    }
+
+    this.lNameInputConfig = {
+      label: this.formInfo.signupForm.lname.label,
+      placeholder: this.formInfo.signupForm.lname.placeholder,
+      appearance: this.formInfo.signupForm.lname.appearance,
+      type: this.formInfo.signupForm.lname.type,
+      errors: this.formInfo.signupForm.lname.errors,
+      hint: this.formInfo.signupForm.lname.hint,
+      classes: this.formInfo.signupForm.lname.classes,
+    }
+
+    this.mobInputConfig = {
+      label: this.formInfo.signupForm.mobileNumber.label,
+      placeholder: this.formInfo.signupForm.mobileNumber.placeholder,
+      appearance: this.formInfo.signupForm.mobileNumber.appearance,
+      type: this.formInfo.signupForm.mobileNumber.type,
+      errors: this.formInfo.signupForm.mobileNumber.errors,
+      hint: this.formInfo.signupForm.mobileNumber.hint,
+      classes: this.formInfo.signupForm.mobileNumber.classes,
+    }
+
+    this.emailSignupInputConfig = {
+      label: this.formInfo.signupForm.email.label,
+      placeholder: this.formInfo.signupForm.email.placeholder,
+      appearance: this.formInfo.signupForm.email.appearance,
+      type: this.formInfo.signupForm.email.type,
+      errors: this.formInfo.signupForm.email.errors,
+      hint: this.formInfo.signupForm.email.hint,
+      classes: this.formInfo.signupForm.email.classes,
+    }
+
+    this.passwordSignupInputConfig = {
+        label: this.formInfo.signupForm.password.label,
+        placeholder: this.formInfo.signupForm.password.placeholder,
+        appearance: this.formInfo.signupForm.password.appearance,
+        type: this.formInfo.signupForm.password.type,
+        errors: this.formInfo.signupForm.password.errors,
+        hint: this.formInfo.signupForm.password.hint,
+        classes: this.formInfo.signupForm.password.classes,
+        matSuffixIcon: this.formInfo.signupForm.password.matSuffixIcon,
+    }
+
+    this.rePasswordInputConfig = {
+      label: this.formInfo.signupForm.repassword.label,
+      placeholder: this.formInfo.signupForm.repassword.placeholder,
+      appearance: this.formInfo.signupForm.repassword.appearance,
+      type: this.formInfo.signupForm.repassword.type,
+      errors: this.formInfo.signupForm.repassword.errors,
+      hint: this.formInfo.signupForm.repassword.hint,
+      classes: this.formInfo.signupForm.repassword.classes,
+      matSuffixIcon: this.formInfo.signupForm.repassword.matSuffixIcon,
+    }
+  }
+  initBtnConfigs() {
     this.loginBtnConfig = {
       label: 'Login',
       stroked: true,

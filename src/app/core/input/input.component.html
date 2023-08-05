@@ -1,42 +1,42 @@
-<div class="input-wrapper" [class]="classes.inputWrapperClass">
-  <mat-form-field [appearance]="appearance" [class]="classes.formFieldClass">
-    <mat-label *ngIf="label">
-      {{ label }}
+<div class="input-wrapper" [class]="config.classes?.inputWrapperClass">
+  <mat-form-field [appearance]="config.appearance" [class]="config.classes?.formFieldClass">
+    <mat-label *ngIf="config.label">
+      {{ config.label }}
     </mat-label>
     <input
-      [type]="type"
-      [placeholder]="placeholder"
+      [type]="config.type"
+      [placeholder]="config.placeholder"
       [formControl]="control"
       (input)="emitEvents($event, 'input')"
       (blur)="emitEvents($event, 'blur')"
-      [class]="classes.inputClass"
+      [class]="config.classes?.inputClass"
       matInput
     />
-    <mat-hint *ngIf="hint && control.untouched">{{ hint }}</mat-hint>
-    <span *ngIf="prefixContent">{{ prefixContent }}</span>
-    <span *ngIf="suffixContent">{{ suffixContent }}</span>
-    <mat-icon *ngIf="matPrefixIcon" matPrefix>{{ matPrefixIcon }}</mat-icon>
+    <mat-hint *ngIf="config.hint && control.untouched">{{ config.hint }}</mat-hint>
+    <span *ngIf="config.prefixContent">{{ config.prefixContent }}</span>
+    <span *ngIf="config.suffixContent">{{ config.suffixContent }}</span>
+    <mat-icon *ngIf="config.matPrefixIcon" matPrefix>{{ config.matPrefixIcon }}</mat-icon>
     <mat-icon
-      *ngIf="matSuffixIcon"
+      *ngIf="config.matSuffixIcon"
       matSuffix
-      [class]="classes.matSuffixIconClass"
+      [class]="config.classes?.matSuffixIconClass"
       (click)="emitEvents($event, 'suffixIconClick')"
-      >{{ matSuffixIcon }}</mat-icon
+      >{{ config.matSuffixIcon }}</mat-icon
     >
     <mat-error
       *ngIf="control.invalid && control.touched && control.errors?.required"
     >
-      {{ errors.required }}
+      {{ config.errors.required }}
     </mat-error>
     <mat-error
       *ngIf="control.invalid && control.touched && control.errors?.pattern"
     >
-      {{ errors.pattern }}
+      {{ config.errors.pattern }}
     </mat-error>
     <mat-error
       *ngIf="control.invalid && control.touched && control.errors?.minLength"
     >
-      {{ errors.minLength }}
+      {{ config.errors.minLength }}
     </mat-error>
   </mat-form-field>
 </div>

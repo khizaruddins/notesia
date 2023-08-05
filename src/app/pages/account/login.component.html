@@ -12,18 +12,10 @@
     <div class="sub-title">Please Login or Register to continue</div>
     <div class="buttons">
       <div class="short-text">
-        {{
-          isLoginOrSignup === "login"
-            ? "Don't Have an account?"
-            : "Already have an acccount?"
-        }}
+        {{ isLoginOrSignup === "login" ? "Don't Have an account?" : "Already have an acccount?" }}
       </div>
       <button mat-stroked-button class="btn-login" (click)="toggleForm()">
-        {{
-          isLoginOrSignup === "login"
-            ? "Click here to create account"
-            : "Click here to Login"
-        }}
+        {{ isLoginOrSignup === "login" ? "Click here to create account" : "Click here to Login" }}
       </button>
     </div>
     <div class="scroll-floating">
@@ -32,130 +24,34 @@
   </div>
   <div class="form-screen">
     <div class="form-wrapper">
-      <form
-        [formGroup]="loginForm"
-        (ngSubmit)="submitForm('login')"
-        *ngIf="isLoginOrSignup === 'login'"
-      >
+      <form [formGroup]="loginForm" (ngSubmit)="submitForm('login')" *ngIf="isLoginOrSignup === 'login'">
         <div class="title">Please enter your credentials to login</div>
-        <app-input
-          [label]="formInfo.loginForm.email.label"
-          [placeholder]="formInfo.loginForm.email.placeholder"
-          [appearance]="formInfo.loginForm.email.appearance"
-          [control]="loginForm.get('email')"
-          [type]="formInfo.loginForm.email.type"
-          [errors]="formInfo.loginForm.email.errors"
-          [hint]="formInfo.loginForm.email.hint"
-          [classes]="formInfo.loginForm.email.classes"
-        ></app-input>
-        <app-input
-          [label]="formInfo.loginForm.password.label"
-          [placeholder]="formInfo.loginForm.password.placeholder"
-          [appearance]="formInfo.loginForm.password.appearance"
-          [control]="loginForm.get('password')"
-          [type]="formInfo.loginForm.password.type"
-          [errors]="formInfo.loginForm.password.errors"
-          (onSuffixIconClick)="onSuffixIconClick($event, 'loginForm')"
-          [hint]="formInfo.loginForm.password.hint"
-          [classes]="formInfo.loginForm.password.classes"
-          [matSuffixIcon]="formInfo.loginForm.password.matSuffixIcon"
-        ></app-input>
-        <app-button
-          [config]="loginBtnConfig"
-        >
-        </app-button>
+        <app-input [config]="emailInputConfig" [control]="$any(loginForm).get('email')" />
+        <app-input [config]="passwordInputConfig" [control]="$any(loginForm).get('password')" (onSuffixIconClick)="onSuffixIconClick($event, 'loginForm')"/>
+        <app-button [config]="loginBtnConfig"/>
       </form>
-      <form
-        [formGroup]="signupForm"
-        (ngSubmit)="submitForm('signup')"
-        *ngIf="isLoginOrSignup === 'signup'"
-      >
-      <div class="title">Please enter your credentials to signup</div>
-      <ng-container *ngIf="step===1">
-        <app-input
-          [label]="formInfo.signupForm.fname.label"
-          [placeholder]="formInfo.signupForm.fname.placeholder"
-          [appearance]="formInfo.signupForm.fname.appearance"
-          [control]="signupForm.get('fname')"
-          [type]="formInfo.signupForm.fname.type"
-          [errors]="formInfo.signupForm.fname.errors"
-          [hint]="formInfo.signupForm.fname.hint"
-          [classes]="formInfo.signupForm.fname.classes"
-        ></app-input>
-        <app-input
-          [label]="formInfo.signupForm.lname.label"
-          [placeholder]="formInfo.signupForm.lname.placeholder"
-          [appearance]="formInfo.signupForm.lname.appearance"
-          [control]="signupForm.get('lname')"
-          [type]="formInfo.signupForm.lname.type"
-          [errors]="formInfo.signupForm.lname.errors"
-          [hint]="formInfo.signupForm.lname.hint"
-          [classes]="formInfo.signupForm.lname.classes"
-        ></app-input>
-        <app-input
-          [label]="formInfo.signupForm.mobileNumber.label"
-          [placeholder]="formInfo.signupForm.mobileNumber.placeholder"
-          [appearance]="formInfo.signupForm.mobileNumber.appearance"
-          [control]="signupForm.get('mob')"
-          [type]="formInfo.signupForm.mobileNumber.type"
-          [errors]="formInfo.signupForm.mobileNumber.errors"
-          [hint]="formInfo.signupForm.mobileNumber.hint"
-          [classes]="formInfo.signupForm.mobileNumber.classes"
-        ></app-input>
-        <app-button
-          [config]="nextBtnConfig"
-          (onClick)="toggleSignupForm()"
-        >
-        </app-button>
-      </ng-container>
-      <ng-container *ngIf="step===2">
-        <app-input
-        [label]="formInfo.signupForm.email.label"
-        [placeholder]="formInfo.signupForm.email.placeholder"
-        [appearance]="formInfo.signupForm.email.appearance"
-        [control]="signupForm.get('email')"
-        [type]="formInfo.signupForm.email.type"
-        [errors]="formInfo.signupForm.email.errors"
-        [hint]="formInfo.signupForm.email.hint"
-        [classes]="formInfo.signupForm.email.classes"
-      ></app-input>
-      
-      <app-input
-        [label]="formInfo.signupForm.password.label"
-        [placeholder]="formInfo.signupForm.password.placeholder"
-        [appearance]="formInfo.signupForm.password.appearance"
-        [control]="signupForm.get('password')"
-        [type]="formInfo.signupForm.password.type"
-        [errors]="formInfo.signupForm.password.errors"
-        [hint]="formInfo.signupForm.password.hint"
-        [classes]="formInfo.signupForm.password.classes"
-        (onSuffixIconClick)="onSuffixIconClick($event, 'signupForm', 'pass')"
-        [matSuffixIcon]="formInfo.signupForm.password.matSuffixIcon"
-      ></app-input>
-      <app-input
-        [label]="formInfo.signupForm.repassword.label"
-        [placeholder]="formInfo.signupForm.repassword.placeholder"
-        [appearance]="formInfo.signupForm.repassword.appearance"
-        [control]="signupForm.get('repassword')"
-        [type]="formInfo.signupForm.repassword.type"
-        [errors]="formInfo.signupForm.repassword.errors"
-        [hint]="formInfo.signupForm.repassword.hint"
-        (onSuffixIconClick)="
-          onSuffixIconClick($event, 'signupForm', 'repass')
-        "
-        [classes]="formInfo.signupForm.repassword.classes"
-        [matSuffixIcon]="formInfo.signupForm.repassword.matSuffixIcon"
-      ></app-input>
-      <mat-error *ngIf="signupForm.errors?.noMatch">
-        <div class="no-match-error">
-          Password and Retype password is not same
-        </div>
-      </mat-error>
-      <app-button
-          [config]="signupBtnConfig"
-        >
-        </app-button>
-      </ng-container>
+      <form [formGroup]="signupForm" (ngSubmit)="submitForm('signup')" *ngIf="isLoginOrSignup === 'signup'">
+        <div class="title mb-2">Please enter your credentials to signup</div>
+        <ng-container *ngIf="step===1">
+          <app-input [config]="fNameInputConfig" [control]="$any(signupForm).get('fname')"/>
+          <app-input [config]="lNameInputConfig" [control]="$any(signupForm).get('lname')"/>
+          <app-input [config]="mobInputConfig" [control]="$any(signupForm).get('mob')"/>
+          <app-button [config]="nextBtnConfig" (onClick)="toggleSignupForm()" />
+        </ng-container>
+        <ng-container *ngIf="step===2">
+          <app-input [config]="emailSignupInputConfig" [control]="$any(signupForm).get('email')"/>
+          <app-input [control]="$any(signupForm).get('password')" [config]="passwordSignupInputConfig"
+            (onSuffixIconClick)="onSuffixIconClick($event, 'signupForm', 'pass')" />
+          <app-input [control]="$any(signupForm).get('repassword')"  
+            [config]="rePasswordInputConfig"
+            (onSuffixIconClick)="onSuffixIconClick($event, 'signupForm', 'repass')"/>
+          <mat-error *ngIf="signupForm.errors?.noMatch">
+            <div class="no-match-error">
+              Password and Retype password is not same
+            </div>
+          </mat-error>
+          <app-button [config]="signupBtnConfig" />
+        </ng-container>
       </form>
     </div>
   </div>

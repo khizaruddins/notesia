@@ -10,6 +10,7 @@ export const FORM_INFO = {
             errors: {
                 required: 'This field is required',
                 pattern: 'Email is invalid',
+                minLength: 'Minimum length'
             },
             classes: {
                 inputWrapperClass: '',
@@ -30,6 +31,7 @@ export const FORM_INFO = {
             errors: {
                 required: 'This field is required',
                 pattern: 'Password is invalid',
+                minLength: 'Minimum length'
             },
             classes: {
                 inputWrapperClass: '',
@@ -49,7 +51,8 @@ export const FORM_INFO = {
             hint: 'Eg: Musk',
             errors: {
                 required: 'This field is required',
-                pattern: '',
+                pattern: 'Invalid',
+                minLength: 'Minimum length'
             },
             classes: {
                 inputWrapperClass: '',
@@ -67,7 +70,8 @@ export const FORM_INFO = {
             hint: 'Eg: Elon',
             errors: {
                 required: 'This field is required',
-                pattern: '',
+                pattern: 'Invalid',
+                minLength: 'Minimum length'
             },
             classes: {
                 inputWrapperClass: '',
@@ -86,6 +90,7 @@ export const FORM_INFO = {
             errors: {
                 required: 'This field is required',
                 pattern: 'Email is invalid',
+                minLength: 'Minimum length'
             },
             classes: {
                 inputWrapperClass: '',
@@ -103,7 +108,8 @@ export const FORM_INFO = {
             hint: '',
             errors: {
                 required: 'This field is required',
-                pattern: '',
+                pattern: 'Invalid',
+                minLength: 'Minimum length'
             },
             classes: {
                 inputWrapperClass: '',
@@ -123,6 +129,7 @@ export const FORM_INFO = {
             errors: {
                 required: 'This field is required',
                 pattern: 'Password is invalid',
+                minLength: 'Minimum length'
             },
             classes: {
                 inputWrapperClass: '',
@@ -142,6 +149,7 @@ export const FORM_INFO = {
             errors: {
                 required: 'This field is required',
                 pattern: 'Password is invalid',
+                minLength: 'Minimum length'
             },
             classes: {
                 inputWrapperClass: '',
