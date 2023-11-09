@@ -1,29 +1,23 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouteConfigLoadEnd, RouteConfigLoadStart, Router } from '@angular/router';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatProgressSpinnerModule,
+    RouterOutlet
+  ],
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   title = 'noteapp';
-  loadingRouteConfig: boolean = false;
-  constructor(
-    private router: Router
-  ) {}
+  constructor() {
 
-  ngOnInit(): void {
-    this.moduleLoader();
   }
 
-  moduleLoader () {
-    this.router.events.subscribe(event => {
-      if (event instanceof RouteConfigLoadStart) {
-        this.loadingRouteConfig = true;
-      } else if (event instanceof RouteConfigLoadEnd) {
-        this.loadingRouteConfig = false;
-      }
-    });
-  }
 }

@@ -30,7 +30,7 @@ import { IInputConfig } from 'src/app/shared/interfaces/input.interface';
     ReactiveFormsModule,
     InputComponent,
     ButtonComponent,
-    MatFormFieldModule,
+    MatFormFieldModule
   ]
 })
 export class LoginComponent implements OnInit {
@@ -203,6 +203,8 @@ export class LoginComponent implements OnInit {
       case 'loginForm':
         this.formInfo.loginForm.password.type = event.target.textContent === 'visibility' ? 'password' : 'text';
         this.formInfo.loginForm.password.matSuffixIcon = event.target.textContent === 'visibility' ? 'visibility_off' : 'visibility';
+        this.passwordInputConfig.type = this.formInfo.loginForm.password.type;
+        this.passwordInputConfig.matSuffixIcon = this.formInfo.loginForm.password.matSuffixIcon;
         break;
       case 'signupForm':
         if (passRepass === 'pass') {

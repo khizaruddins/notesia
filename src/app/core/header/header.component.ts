@@ -17,7 +17,7 @@ import { StorageService } from 'src/app/shared/services/storage.service';
     MatButtonModule,
     RouterModule,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
   ],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
