@@ -9,9 +9,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterModule } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HttpInterceptorService } from './shared/interceptors/http-interceptor.service';
-import { environment } from 'src/environments/environment';
-import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
@@ -27,8 +24,6 @@ import { HomeComponent } from './pages/home/home.component';
     HomeComponent,
     MatSnackBarModule,
     MatProgressSpinnerModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideFirestore(() => getFirestore()),
   ],
   providers: [
     {

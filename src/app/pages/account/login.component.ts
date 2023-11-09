@@ -5,8 +5,6 @@ import { FORM_INFO } from '../../shared/constants/form-info';
 import { Router } from '@angular/router';
 import { UtilService } from 'src/app/shared/utils/util.service';
 import { CookieService } from 'src/app/shared/services/cookie.service';
-import { environment } from 'src/environments/environment';
-import { Firestore, collectionData, collection } from '@angular/fire/firestore';
 import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
@@ -32,7 +30,7 @@ import { IInputConfig } from 'src/app/shared/interfaces/input.interface';
     ReactiveFormsModule,
     InputComponent,
     ButtonComponent,
-    MatFormFieldModule
+    MatFormFieldModule,
   ]
 })
 export class LoginComponent implements OnInit {
@@ -42,10 +40,9 @@ export class LoginComponent implements OnInit {
     private fv: FormValidators,
     private router: Router,
     private utilService: UtilService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
   ) { }
 
-  firestore: Firestore = inject(Firestore);
 
   formInfo = FORM_INFO;
   isLoginOrSignup = 'login';
@@ -76,13 +73,13 @@ export class LoginComponent implements OnInit {
   emailSignupInputConfig: IInputConfig = {} as IInputConfig;
   passwordSignupInputConfig: IInputConfig = {} as IInputConfig;
   rePasswordInputConfig: IInputConfig = {} as IInputConfig;
+  usersList = [];
 
 
   ngOnInit(): void {
     this.isLoggedIn();
     this.initBtnConfigs();
     this.initInputConfigs();
-    this.initializeFirebase();
   }
 
   initInputConfigs() {
@@ -190,14 +187,6 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  initializeFirebase() {
-    const itemCollection = collection(this.firestore, 'users');
-    const value = collectionData(itemCollection);
-      value.subscribe(val => {
-        console.log(val);
-    })
-  }
-
   isLoggedIn() {
     if (this.cookieService.getCookie('uid')) {
       this.utilService.openSnackbarDuration('Already Logged in', 'DISMISS', 3000);
@@ -258,7 +247,7 @@ export class LoginComponent implements OnInit {
   loginFlow() {
     let email = this.loginForm.get('email')?.value;
     let password = btoa(this.loginForm.get('password')?.value);
-    // const dbEmail = collection(this.firestore, 'users', (ref: any) => ref.where('email', '==', email));
+
     // dbEmail.valueChanges({ idField: 'userId' }).subscribe((dbValue: any) => {
     //   if (dbValue.length > 0) {
     //     if (dbValue[0].password === password) {

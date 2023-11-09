@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "firestore-d1845": {
+      "hosting": {
+        "noteapp": [
+          "notesia"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "firestore-d1845"
+  }
+}
