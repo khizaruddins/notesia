@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { NavigationEnd, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ButtonComponent } from 'src/app/core/button/button.component';
 import { DialogComponent } from 'src/app/core/dialog/dialog.component';
 import { HeaderComponent } from 'src/app/core/header/header.component';
@@ -30,19 +30,9 @@ export class HomeComponent implements OnInit {
     private storageService: StorageService,
     private utilService: UtilService,
     private router: Router
-  ) {
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        this.utilService.erase(this.typedTextRef, this.cursorRef);
-      } 
-    });
-   }
+  ) {}
 
   downloadCvBtnConfig: IButtonConfig = {};
-
-  @ViewChild('typedTextRef', { static: true }) typedTextRef: ElementRef<HTMLElement> = {} as ElementRef;
-  @ViewChild('cursorRef', { static: true }) cursorRef: ElementRef<HTMLElement> = {} as ElementRef;
-
 
   isHome = false;
   userDetails: any;
@@ -53,22 +43,13 @@ export class HomeComponent implements OnInit {
 
   initConfigs() {
     this.downloadCvBtnConfig = {
-      label: 'Download CV',
+      label: 'Sign In / Register',
       icon: 'b',
       iconClass: 'pe-1', 
       iconPlacement: 'before', 
       buttonClass: '',
-      bootstrapIconClass: 'bi-file-earmark-pdf', 
+      bootstrapIconClass: 'bi-door-closed', 
       stroked: true 
     }
   }
-  
-  ngAfterViewInit(): void {
-    this.utilService.initTextAnimation(this.typedTextRef, this.cursorRef);
-  }
-
-  getUserDetails() {
-    this.userDetails = JSON.parse(this.storageService.getLocalStorageItem('user') as any);
-  }
-
 }
