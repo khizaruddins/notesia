@@ -42,7 +42,7 @@ export const FORM_INFO = {
     },
   },
   signupForm: {
-    fname: {
+    first_name: {
       label: 'First name',
       placeholder: 'First Name',
       appearance: 'outline' as const,
@@ -61,7 +61,7 @@ export const FORM_INFO = {
         matSuffixIconClass: '',
       },
     },
-    lname: {
+    last_name: {
       label: 'Last name',
       placeholder: 'Last Name',
       appearance: 'outline' as const,
@@ -100,7 +100,7 @@ export const FORM_INFO = {
         matSuffixIconClass: '',
       },
     },
-    mobileNumber: {
+    phone: {
       label: 'Mobile number',
       placeholder: '+91 1234567890',
       appearance: 'outline' as const,

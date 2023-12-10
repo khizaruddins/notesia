@@ -8,7 +8,7 @@
     <div class="overlay-section">
       <img
         class="profile-img"
-        src="/assets/images/profile/profile-img.jpg"
+        [src]="userData ? userData.avatar : '/assets/images/profile/profile-img.jpg'"
         alt="default profile"
       />
       <div class="sub-top-heading">Hello & Welcome</div>
@@ -16,24 +16,12 @@
         <div class="static-text">Let's preserve your precious ideas, todos, content, journals, poems etc.</div>
       </div>
       <div class="social-icons">
-        <a target="_blank" href="https://www.facebook.com/khizaruddins" title="facebook profile">
-          <i class="bi bi-facebook"></i>
-        </a>
-        <a target="_blank" href="https://twitter.com/khizaruddins">
-          <i class="bi bi-twitter"></i>
-        </a>
-        <a target="_blank" href="https://www.linkedin.com/in/khizaruddins/" title="linkedin profile">
-          <i class="bi bi-linkedin"></i>
-        </a>
-        <a target="_blank" href="https://wa.me/09326486363?text=Hi%2C%20Khizar%2C%20%0ANeed%20to%20discuss%20regarding%20technology.%0APlease%20reply" title="contact whatsapp">
-          <i class="bi bi-whatsapp"></i>
-        </a>
-        <a target="_blank" href="https://www.instagram.com/themuslimsdev/" title="instagram profile">
-          <i class="bi bi-instagram"></i>
+        <a target="_blank" [href]="link.link" *ngFor="let link of socialLinks" [title]="link.title">
+          <i [class]="'bi ' + link.icon"></i>
         </a>
       </div>
       <div class="resume-download">
-        <app-button [config]="downloadCvBtnConfig"></app-button>
+        <app-button [config]="downloadCvBtnConfig" (onClick)="handleLoginOrResumeLink()"></app-button>
       </div>
     </div>
     <div class="circular-oval-btn-wrapper">

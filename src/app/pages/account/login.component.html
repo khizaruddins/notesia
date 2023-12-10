@@ -33,9 +33,9 @@
       <form [formGroup]="signupForm" (ngSubmit)="submitForm('signup')" *ngIf="isLoginOrSignup === 'signup'">
         <div class="title mb-2">Please enter your credentials to signup</div>
         <ng-container *ngIf="step===1">
-          <app-input [config]="fNameInputConfig" [control]="$any(signupForm).get('fname')"/>
-          <app-input [config]="lNameInputConfig" [control]="$any(signupForm).get('lname')"/>
-          <app-input [config]="mobInputConfig" [control]="$any(signupForm).get('mob')"/>
+          <app-input [config]="fNameInputConfig" [control]="$any(signupForm).get('first_name')"/>
+          <app-input [config]="lNameInputConfig" [control]="$any(signupForm).get('last_name')"/>
+          <app-input [config]="mobInputConfig" [control]="$any(signupForm).get('phone')"/>
           <app-button [config]="nextBtnConfig" (onClick)="toggleSignupForm()" />
         </ng-container>
         <ng-container *ngIf="step===2">
@@ -50,6 +50,7 @@
               Password and Retype password is not same
             </div>
           </mat-error>
+          <app-button [config]="prevBtnConfig" (onClick)="step = 1"/>
           <app-button [config]="signupBtnConfig" />
         </ng-container>
       </form>

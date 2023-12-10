@@ -14,6 +14,8 @@ import { ButtonComponent } from 'src/app/core/button/button.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { IButtonConfig } from 'src/app/shared/interfaces/button.interface';
 import { IInputConfig } from 'src/app/shared/interfaces/input.interface';
+import { LoginService } from 'src/app/shared/services/login.service';
+import { EncryptionService } from 'src/app/shared/services/encryption.service';
 
 
 @Component({
@@ -41,6 +43,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private utilService: UtilService,
     private cookieService: CookieService,
+    private loginService: LoginService,
+    private encryptionService: EncryptionService
   ) { }
 
 
@@ -51,10 +55,10 @@ export class LoginComponent implements OnInit {
     password: ['', [Validators.required, Validators.pattern(this.formInfo.loginForm.password.pattern)]]
   });
   signupForm: FormGroup = this.fb.group({
-    fname: ['', [Validators.required, Validators.minLength(3)]],
-    lname: ['', [Validators.required, Validators.minLength(3)]],
+    first_name: ['', [Validators.required, Validators.minLength(3)]],
+    last_name: ['', [Validators.required, Validators.minLength(3)]],
     email: ['', [Validators.required, Validators.pattern(this.formInfo.loginForm.email.pattern)]],
-    mob: ['', [Validators.required, Validators.pattern(/[\d]{10}$/)]],
+    phone: ['', [Validators.required, Validators.pattern(/[\d]{10}$/)]],
     password: ['', [Validators.required, Validators.pattern(this.formInfo.loginForm.password.pattern)]],
     repassword: ['', [Validators.required, Validators.pattern(this.formInfo.loginForm.password.pattern)]]
   }, { validator: this.fv.matchPassword('password', 'repassword') });
@@ -64,6 +68,7 @@ export class LoginComponent implements OnInit {
   loginBtnConfig: IButtonConfig = {};
   nextBtnConfig: IButtonConfig = {};
   signupBtnConfig: IButtonConfig = {};
+  prevBtnConfig: IButtonConfig = {};
 
   emailInputConfig: IInputConfig = {} as IInputConfig;
   passwordInputConfig: IInputConfig = {} as IInputConfig;
@@ -105,33 +110,33 @@ export class LoginComponent implements OnInit {
     }
 
     this.fNameInputConfig = {
-      label: this.formInfo.signupForm.fname.label,
-      placeholder: this.formInfo.signupForm.fname.placeholder,
-      appearance: this.formInfo.signupForm.fname.appearance,
-      type: this.formInfo.signupForm.fname.type,
-      errors: this.formInfo.signupForm.fname.errors,
-      hint: this.formInfo.signupForm.fname.hint,
-      classes: this.formInfo.signupForm.fname.classes,
+      label: this.formInfo.signupForm.first_name.label,
+      placeholder: this.formInfo.signupForm.first_name.placeholder,
+      appearance: this.formInfo.signupForm.first_name.appearance,
+      type: this.formInfo.signupForm.first_name.type,
+      errors: this.formInfo.signupForm.first_name.errors,
+      hint: this.formInfo.signupForm.first_name.hint,
+      classes: this.formInfo.signupForm.first_name.classes,
     }
 
     this.lNameInputConfig = {
-      label: this.formInfo.signupForm.lname.label,
-      placeholder: this.formInfo.signupForm.lname.placeholder,
-      appearance: this.formInfo.signupForm.lname.appearance,
-      type: this.formInfo.signupForm.lname.type,
-      errors: this.formInfo.signupForm.lname.errors,
-      hint: this.formInfo.signupForm.lname.hint,
-      classes: this.formInfo.signupForm.lname.classes,
+      label: this.formInfo.signupForm.last_name.label,
+      placeholder: this.formInfo.signupForm.last_name.placeholder,
+      appearance: this.formInfo.signupForm.last_name.appearance,
+      type: this.formInfo.signupForm.last_name.type,
+      errors: this.formInfo.signupForm.last_name.errors,
+      hint: this.formInfo.signupForm.last_name.hint,
+      classes: this.formInfo.signupForm.last_name.classes,
     }
 
     this.mobInputConfig = {
-      label: this.formInfo.signupForm.mobileNumber.label,
-      placeholder: this.formInfo.signupForm.mobileNumber.placeholder,
-      appearance: this.formInfo.signupForm.mobileNumber.appearance,
-      type: this.formInfo.signupForm.mobileNumber.type,
-      errors: this.formInfo.signupForm.mobileNumber.errors,
-      hint: this.formInfo.signupForm.mobileNumber.hint,
-      classes: this.formInfo.signupForm.mobileNumber.classes,
+      label: this.formInfo.signupForm.phone.label,
+      placeholder: this.formInfo.signupForm.phone.placeholder,
+      appearance: this.formInfo.signupForm.phone.appearance,
+      type: this.formInfo.signupForm.phone.type,
+      errors: this.formInfo.signupForm.phone.errors,
+      hint: this.formInfo.signupForm.phone.hint,
+      classes: this.formInfo.signupForm.phone.classes,
     }
 
     this.emailSignupInputConfig = {
@@ -184,6 +189,16 @@ export class LoginComponent implements OnInit {
       stroked: true,
       buttonClass: 'theme-inverse-btn',
       type: 'submit'
+    }
+    this.prevBtnConfig = {
+      icon: 'm',
+      matIcon: 'arrow_back',
+      iconPlacement: 'before',
+      label: 'Prev',
+      iconClass: '',
+      stroked: true,
+      buttonClass: 'prev-btn theme-inverse-btn',
+      type: 'button'
     }
   }
 
@@ -247,32 +262,18 @@ export class LoginComponent implements OnInit {
   }
 
   loginFlow() {
-    let email = this.loginForm.get('email')?.value;
-    let password = btoa(this.loginForm.get('password')?.value);
-
-    // dbEmail.valueChanges({ idField: 'userId' }).subscribe((dbValue: any) => {
-    //   if (dbValue.length > 0) {
-    //     if (dbValue[0].password === password) {
-    //       delete dbValue[0].password;
-    //       const data = JSON.stringify(dbValue[0]);
-    //       this.storageService.setLocalStorageItem('user', data);
-    //       const domain = this.DOMAIN_URL === 'http://localhost:4200' ? 'localhost': 'notasia';
-    //       this.cookieService.setCookie('uid', dbValue[0].userId, 3);
-    //       this.router.navigate(['/']);
-    //     } else {
-    //       this.utilService.openSnackbarDuration('Your password is incorrect', 'DISMISS', 3000);
-    //     }
-    //   } else {
-    //     this.utilService.openSnackbarDuration('Your email is incorrect or you are not registered', 'DISMISS', 3000);
-    //   }
-    // }, (error: any) => {
-    //   console.error(error.message);
-    //   this.utilService.openSnackbarDuration('Something went wrong', 'DISMISS', 3000);
-    // });
+    const email = this.loginForm.get('email')?.value;
+    this.loginService.checkUserAndLogin(email, this.loginForm.get('password')?.value);
   }
 
   checkRegisteredUser() {
     let email = this.signupForm.get('email')?.value;
+    this.loginService.checkRegisteredUser(email).then(val => {
+      if (val) {
+        this.utilService.openSnackbar('You are already registered, Please Login', 'DISMISS');
+        this.step = 1;
+      }
+    })
     // const dbEmail = this.db.collection('users', (ref: any) => ref.where('email', '==', email));
     // dbEmail.valueChanges({ idField: 'userId' }).subscribe((dbValue: any) => {
     //   if (dbValue.length > 0) {
@@ -287,8 +288,7 @@ export class LoginComponent implements OnInit {
 
   signupFlow() {
     let data = { ...this.signupForm.value };
-    let userId, value;
-    data.password = btoa(this.signupForm.get('password')?.value);
+    data.password = this.encryptionService.encryptData(this.signupForm.get('password')?.value);
     delete data.repassword;
     data.isAdmin = false;
     try {

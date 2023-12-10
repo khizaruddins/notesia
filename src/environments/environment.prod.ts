@@ -10,6 +10,9 @@ export const environment = {
     authDomain: 'firestore-d1845.firebaseapp.com',
     messagingSenderId: '914829067670',
   },
+  supabaseCreds: {
+    dbPassword: 'hZyg+~b9@GPZLJ2'
+  },
   tinymce: {
       apiKey: "4m2guy6ekhhk2lvpkz8lz22fwozhfk2s0fcbz0ln18d14z7a"
   },

@@ -31,9 +31,9 @@
         }
       }
       .main-heading {
-        font-size: 3rem;
+        font-size: 2rem;
         @media (max-width: 768px) {
-          font-size: 2rem;
+          font-size: 1.8rem;
         }
       }
       .social-icons {
@@ -58,6 +58,9 @@
       }
       .resume-download {
         margin-top: 20px;
+        ::ng-deep app-button button .mdc-button__label{
+          display: flex;
+        }
       }
     }
     .circular-oval-btn-wrapper {

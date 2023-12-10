@@ -5,8 +5,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { IUser } from 'src/app/shared/interfaces/user.interface';
 import { LoginService } from 'src/app/shared/services/login.service';
 import { StorageService } from 'src/app/shared/services/storage.service';
+import { VariableService } from 'src/app/shared/services/variable.service';
 
 @Component({
   selector: 'app-header',
@@ -28,9 +31,10 @@ export class HeaderComponent implements OnInit {
   @ViewChild('navRef', {static: true}) navRef: ElementRef<HTMLElement> = {} as ElementRef;
   constructor(
     private router: Router,
-    private storageService: StorageService,
     private renderer: Renderer2,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private vars: VariableService,
+    private storageService: StorageService
   ) { 
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -44,6 +48,8 @@ export class HeaderComponent implements OnInit {
     }); 
   }
   isHome = false;
+  subs: Subscription[] =  [];
+  userData: IUser | null = null;
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
@@ -61,16 +67,21 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-
   ngOnInit(): void {
-    this.isLoggedIn();
+    this.checkIsLoggedIn();
   }
 
-  isLoggedIn(): void {
-    this.loggedIn = this.storageService.getLocalStorageItem('user') ? true : false;
-    // if (!this.loggedIn) {
-    //   this.router.navigate(['accounts']);
-    // }
+  checkIsLoggedIn(): void {
+    const userdata: IUser | null = this.storageService.getLocalStorageItem('userdata') ? JSON.parse(this.storageService.getLocalStorageItem('userdata') as string): null;
+    if (userdata) {
+      this.vars.setUserObs(userdata);
+    }
+    this.subs.push(this.vars.userObs.subscribe(userData=> {
+      if (userData && Object.keys(userData).length > 0) {
+        this.loggedIn = true;
+        this.userData = userData;
+      }
+    }));
   }
 
   handleUserLogin() {
@@ -78,6 +89,14 @@ export class HeaderComponent implements OnInit {
       this.loginService.userLogout();
     } else {
       this.router.navigate(['accounts']);
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.subs.length >0) {
+      this.subs.forEach(sub => {
+        sub.unsubscribe();
+      })
     }
   }
 

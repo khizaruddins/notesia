@@ -7,9 +7,15 @@ import { ButtonComponent } from 'src/app/core/button/button.component';
 import { DialogComponent } from 'src/app/core/dialog/dialog.component';
 import { HeaderComponent } from 'src/app/core/header/header.component';
 import { IButtonConfig } from 'src/app/shared/interfaces/button.interface';
-import { StorageService } from 'src/app/shared/services/storage.service';
-import { UtilService } from 'src/app/shared/utils/util.service';
+import { IUser } from 'src/app/shared/interfaces/user.interface';
+import { VariableService } from 'src/app/shared/services/variable.service';
 
+export interface ILinks {
+  icon: string;
+  title: string;
+  id: number;
+  link: string;
+}
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -27,18 +33,35 @@ import { UtilService } from 'src/app/shared/utils/util.service';
 export class HomeComponent implements OnInit {
 
   constructor(
-    private storageService: StorageService,
-    private utilService: UtilService,
-    private router: Router
+    private router: Router,
+    private vars: VariableService
   ) {}
 
   downloadCvBtnConfig: IButtonConfig = {};
 
+  socialLinks: ILinks[] = [];
+
   isHome = false;
   userDetails: any;
+  userData: IUser | null = null;
   
   ngOnInit(): void {
     this.initConfigs();
+    this.checkUserLogin();
+  }
+
+  checkUserLogin() {
+    this.vars.userObs.subscribe(userData => {
+      if (userData && Object.keys(userData).length > 0) {
+        this.userData = userData;
+        this.socialLinks = userData.social_links.data;
+        this.downloadCvBtnConfig = {
+          ...this.downloadCvBtnConfig,
+          label: 'Download CV',
+          bootstrapIconClass: 'bi-download'
+        }
+      }
+    })
   }
 
   initConfigs() {
@@ -51,5 +74,20 @@ export class HomeComponent implements OnInit {
       bootstrapIconClass: 'bi-door-closed', 
       stroked: true 
     }
+  }
+
+  handleLoginOrResumeLink() {
+    if (this.userData) {
+      const a = document.createElement('a');
+      a.href = this.userData.cv_link;
+      a.target = '_blank';
+      a.click();
+    } else  {
+      this.redirectToLogin()
+    }
+  }
+
+  redirectToLogin() {
+    this.router.navigate(['/accounts'])
   }
 }

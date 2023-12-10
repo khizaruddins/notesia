@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterOutlet } from '@angular/router';
+import { ApiService } from './shared/services/api.service';
 
 @Component({
   selector: 'app-root',
@@ -16,8 +17,11 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'noteapp';
-  constructor() {
+  constructor(
+    private apiService: ApiService
+  ) {}
 
+  ngOnInit() {
   }
 
 }

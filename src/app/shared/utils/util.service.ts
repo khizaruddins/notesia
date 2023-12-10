@@ -18,6 +18,6 @@ export class UtilService {
   }
 
   openSnackbar(title: string, action: string) {
-    this.openSnackbarDuration(title, action, 300);
+    this.openSnackbarDuration(title, action, 3000);
   }
 }

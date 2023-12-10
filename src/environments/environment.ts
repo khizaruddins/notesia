@@ -21,6 +21,11 @@ export const environment = {
     authDomain: 'firestore-d1845.firebaseapp.com',
     messagingSenderId: '914829067670',
   },
+  supabaseCreds: {
+    dbPassword: 'hZyg+~b9@GPZLJ2',
+    apiKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlzdXRsZ3FrbHZ5YnZxcWpwZ3BmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDA1NTk3MzYsImV4cCI6MjAxNjEzNTczNn0.P6xLFvPbwcTenFYXDdTrHQZ0xZcpC4y3lTqsqdYjBZA',
+    url: 'https://isutlgqklvybvqqjpgpf.supabase.co'
+  },
   tinymce: {
     apiKey: "4m2guy6ekhhk2lvpkz8lz22fwozhfk2s0fcbz0ln18d14z7a"
   }
