@@ -1,1 +1,77 @@
 /* You can add global styles to this file, and also import other style files */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+}
+
+.f-work-sans {
+  font-family: "Work sans", sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: "Work sans", sans-serif;
+}
+
+.f-adamina {
+  font-family: "Adamina", serif !important;
+}
+
+.fw-bold {
+  font-weight: 700;
+}
+
+.f-times {
+  font-family: "Times New Roman", Times, serif !important;
+}
+
+.fc-white {
+  color: #fff;
+}
+
+.fc-grey {
+  color: #ccc;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.c-p {
+  cursor: pointer;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  @media (max-width: 768px) {
+    width: 90%;
+  }
+}
+
+.bg-white {
+  .mat-dialog-container {
+    background: #fff !important;
+    color: #000 !important;
+  }
+}
+.text-justify {
+  text-align: justify;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+html {
+  scroll-behavior: smooth;
+}

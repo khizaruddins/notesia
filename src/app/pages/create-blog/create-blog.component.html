@@ -1,0 +1,4 @@
+<div class="create-blog-wrapper">
+  <editor [apiKey]="environment.tinymce.apiKey" [init]="dfreeHeaderConfig" tagName="h1" initialValue="Title" [(ngModel)]="headerContent"></editor>
+  <editor [apiKey]="environment.tinymce.apiKey" [init]="dfreeBodyConfig" [(ngModel)]="bodyContent"></editor>
+</div>

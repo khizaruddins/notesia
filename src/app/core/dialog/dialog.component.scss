@@ -1,0 +1,12 @@
+.dialog-container {
+  background: #fff;
+  .dialog-content {
+    width: 80%;
+    margin: 30px auto 0;
+  }
+  .close-icon {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+  }
+}

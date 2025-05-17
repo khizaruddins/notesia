@@ -1,0 +1,42 @@
+<div class="input-wrapper" [class]="config.classes?.inputWrapperClass">
+  <mat-form-field [appearance]="config.appearance" [class]="config.classes?.formFieldClass">
+    <mat-label *ngIf="config.label">
+      {{ config.label }}
+    </mat-label>
+    <input
+      [type]="config.type"
+      [placeholder]="config.placeholder"
+      [formControl]="control"
+      (input)="emitEvents($event, 'input')"
+      (blur)="emitEvents($event, 'blur')"
+      [class]="config.classes?.inputClass"
+      matInput
+    />
+    <mat-hint *ngIf="config.hint && control.untouched">{{ config.hint }}</mat-hint>
+    <span *ngIf="config.prefixContent">{{ config.prefixContent }}</span>
+    <span *ngIf="config.suffixContent">{{ config.suffixContent }}</span>
+    <mat-icon *ngIf="config.matPrefixIcon" matPrefix>{{ config.matPrefixIcon }}</mat-icon>
+    <mat-icon
+      *ngIf="config.matSuffixIcon"
+      matSuffix
+      [class]="config.classes?.matSuffixIconClass"
+      (click)="emitEvents($event, 'suffixIconClick')"
+      >{{ config.matSuffixIcon }}</mat-icon
+    >
+    <mat-error
+      *ngIf="control.invalid && control.touched && control.hasError('required')"
+    >
+      {{ config.errors.required }}
+    </mat-error>
+    <mat-error
+      *ngIf="control.invalid && control.touched && control.hasError('pattern')"
+    >
+      {{ config.errors.pattern }}
+    </mat-error>
+    <mat-error
+      *ngIf="control.invalid && control.touched && control.hasError('minLength')"
+    >
+      {{ config.errors.minLength }}
+    </mat-error>
+  </mat-form-field>
+</div>

@@ -1,0 +1,59 @@
+<div class="wrapper">
+  <div class="welcome-screen">
+    <div class="logos">
+      <mat-icon>create</mat-icon>
+      <mat-icon> edit_note </mat-icon>
+      <mat-icon> short_text </mat-icon>
+      <mat-icon> sticky_note_2 </mat-icon>
+      <mat-icon> format_list_bulleted </mat-icon>
+      <mat-icon> emoji_symbols </mat-icon>
+    </div>
+    <div class="main-title">Welcome to Notesia</div>
+    <div class="sub-title">Please Login or Register to continue</div>
+    <div class="buttons">
+      <div class="short-text">
+        {{ isLoginOrSignup === "login" ? "Don't Have an account?" : "Already have an acccount?" }}
+      </div>
+      <button mat-stroked-button class="btn-login" (click)="toggleForm()">
+        {{ isLoginOrSignup === "login" ? "Click here to create account" : "Click here to Login" }}
+      </button>
+    </div>
+    <div class="scroll-floating">
+      <mat-icon>unfold_more</mat-icon>
+    </div>
+  </div>
+  <div class="form-screen">
+    <div class="form-wrapper">
+      <form [formGroup]="loginForm" (ngSubmit)="submitForm('login')" *ngIf="isLoginOrSignup === 'login'">
+        <div class="title">Please enter your credentials to login</div>
+        <app-input [config]="emailInputConfig" [control]="$any(loginForm).get('email')" />
+        <app-input [config]="passwordInputConfig" [control]="$any(loginForm).get('password')" (onSuffixIconClick)="onSuffixIconClick($event, 'loginForm')"/>
+        <app-button [config]="loginBtnConfig"/>
+      </form>
+      <form [formGroup]="signupForm" (ngSubmit)="submitForm('signup')" *ngIf="isLoginOrSignup === 'signup'">
+        <div class="title mb-2">Please enter your credentials to signup</div>
+        <ng-container *ngIf="step===1">
+          <app-input [config]="fNameInputConfig" [control]="$any(signupForm).get('first_name')"/>
+          <app-input [config]="lNameInputConfig" [control]="$any(signupForm).get('last_name')"/>
+          <app-input [config]="mobInputConfig" [control]="$any(signupForm).get('phone')"/>
+          <app-button [config]="nextBtnConfig" (onClick)="toggleSignupForm()" />
+        </ng-container>
+        <ng-container *ngIf="step===2">
+          <app-input [config]="emailSignupInputConfig" [control]="$any(signupForm).get('email')"/>
+          <app-input [control]="$any(signupForm).get('password')" [config]="passwordSignupInputConfig"
+            (onSuffixIconClick)="onSuffixIconClick($event, 'signupForm', 'pass')" />
+          <app-input [control]="$any(signupForm).get('repassword')"  
+            [config]="rePasswordInputConfig"
+            (onSuffixIconClick)="onSuffixIconClick($event, 'signupForm', 'repass')"/>
+          <mat-error *ngIf="signupForm?.hasError('noMatch')">
+            <div class="no-match-error">
+              Password and Retype password is not same
+            </div>
+          </mat-error>
+          <app-button [config]="prevBtnConfig" (onClick)="step = 1"/>
+          <app-button [config]="signupBtnConfig" />
+        </ng-container>
+      </form>
+    </div>
+  </div>
+</div>

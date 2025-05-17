@@ -1,0 +1,137 @@
+<div class="home-wrapper">
+  <section class="main-banner">
+    <img
+      src="/images/backgrounds/bg-img.jpg"
+      class="bg-img"
+      alt="banner image"
+    />
+    <div class="overlay-section">
+      <img
+        class="profile-img"
+        [src]="userData ? userData.avatar : '/images/profile/profile-img.jpg'"
+        alt="default profile"
+      />
+      <div class="sub-top-heading">Hello & Welcome</div>
+      <div class="main-heading d-flex animate-info">
+        <div class="static-text">
+          Let's preserve your precious ideas, todos, content, journals, poems
+          etc.
+        </div>
+      </div>
+      <div class="social-icons">
+        <a
+          target="_blank"
+          [href]="link.link"
+          *ngFor="let link of socialLinks"
+          [title]="link.title"
+        >
+          <i [class]="'bi ' + link.icon"></i>
+        </a>
+      </div>
+      <div class="resume-download">
+        <app-button
+          [config]="downloadCvBtnConfig"
+          (onClick)="handleLoginOrResumeLink()"
+        ></app-button>
+      </div>
+    </div>
+    <div class="circular-oval-btn-wrapper">
+      <div class="oval-button">
+        <i class="bi bi-chevron-double-down"></i>
+      </div>
+    </div>
+  </section>
+  <section class="about">
+    <div class="row container py-5">
+      <div class="col-12">
+        <div class="text display-4 mb-4">Introduction</div>
+      </div>
+      <div class="col-6">
+        <p class="content text-justify">
+          Hi, I'm mumbai based <strong>Software Engineer</strong>, currently
+          working as an <strong>Angular Developer </strong>
+          <a href="https://ketto.org/" target="_blank">&#64;Ketto</a>, serving
+          more than 10k+ customers through my frontend skills, Up for
+          challenges, Known to <strong>Angular Framework</strong> for almost 2
+          years, overall 3 years of experience in web development, I learned
+          <strong> React</strong> and I have projects which utilises my React
+          skills, I am known to <strong>Angularjs</strong> which is used in our
+          dashboard and admin panels, I have learned <strong>Vuejs</strong> as
+          well, as learning never stops i have a bucketlist which makes me
+          motivated to learn new things and new stuffs and to implement them.
+        </p>
+        <p class="content text-justify">
+          Whenever I learn some new things I implement it right away and make a
+          document of what I've learned, In this process I end up making a blog
+          for future reference, which comes in handy, So I write blogs and
+          explain what I have learned and help people achieve their goal. There
+          are some of the blogs which I have shared on medium you can check it
+          out from this link
+          <a href="https://khizaruddins.medium.com" target="_blank">here</a>
+        </p>
+      </div>
+      <div class="col-6">
+        <img
+          src="https://res.cloudinary.com/practicaldev/image/fetch/s--o42m8ICD--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://d33wubrfki0l68.cloudfront.net/0c1f2b3a7db2b90f7c24915eb8b1223bbd80d3e5/d5c2a/static/b87971fa3d35839c9b909d9dffc76dc9/frontend.png"
+          alt="no mage"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="my-works py-5">
+    <div class="row container text-center">
+      <div class="col-12 display-4 mb-4">My Works</div>
+      <div class="row">
+        <div class="col-4">
+          <div class="card">
+            <img
+              src="https://www.designhill.com/resize_img.php?atyp=page_file&pth=ft_ca_ct||258||contestfile_9&flp=1552565546-14728291705c8a452a29e588-34309643.jpg"
+              alt=""
+              class="card-img-top"
+            />
+            <div class="card-title">Project Title</div>
+            <div class="card-text">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti
+              amet ullam blanditiis eum necessitatibus assumenda aspernatur ut
+              dicta earum harum esse, fugiat quia praesentium doloribus in
+              quidem quaerat ad suscipit.
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card">
+            <img
+              src="https://www.designhill.com/resize_img.php?atyp=page_file&pth=ft_ca_ct||258||contestfile_9&flp=1552565546-14728291705c8a452a29e588-34309643.jpg"
+              alt=""
+              class="card-img-top"
+            />
+            <div class="card-title">Project Title</div>
+            <div class="card-text">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti
+              amet ullam blanditiis eum necessitatibus assumenda aspernatur ut
+              dicta earum harum esse, fugiat quia praesentium doloribus in
+              quidem quaerat ad suscipit.
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card">
+            <img
+              src="https://www.designhill.com/resize_img.php?atyp=page_file&pth=ft_ca_ct||258||contestfile_9&flp=1552565546-14728291705c8a452a29e588-34309643.jpg"
+              alt=""
+              class="card-img-top"
+            />
+            <div class="card-title">Project Title</div>
+            <div class="card-text">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti
+              amet ullam blanditiis eum necessitatibus assumenda aspernatur ut
+              dicta earum harum esse, fugiat quia praesentium doloribus in
+              quidem quaerat ad suscipit.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

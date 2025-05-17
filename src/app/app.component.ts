@@ -1,12 +1,27 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterOutlet } from '@angular/router';
+import { ApiService } from './shared/services/api.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatProgressSpinnerModule,
+    RouterOutlet
+  ],
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'notesia-v2';
+  title = 'noteapp';
+  constructor(
+    private apiService: ApiService
+  ) {}
+
+  ngOnInit() {
+  }
+
 }
